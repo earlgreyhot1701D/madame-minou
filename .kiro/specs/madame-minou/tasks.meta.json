@@ -1,0 +1,337 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Compute a known cat's sun + moon from a date with pyswisseph in a standalone Python script; verify correct signs [R3.1, R3.2]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214222
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687225151
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687332095
+      }
+    ],
+    "1.2 Run `enable-outbound-web-identity-federation`, set workspace + region env, call AnthropicAWS for a one-line styled reading; confirm styled text returned [R4.2, R11.2]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214224
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687336991
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687438688
+      }
+    ],
+    "1.3 Feed a structured facts object into the persona system prompt; confirm the reading is specific to those facts, not generic horoscope [R2.1, R2.3]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214226
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687441495
+      }
+    ],
+    "1.4 Deploy a hello-world Lambda + static page on the chosen AWS path; confirm reachable URL (fall back to Vercel if blocked) [R11.4]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214229
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687677296
+      }
+    ],
+    "2.1 Implement the deterministic chart function producing the structured facts object with all degradation tiers (full / date_only / estimated / mystery) [R3.1, R3.2, R3.3, R3.5, R3.7]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214231
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687923061
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782688047950
+      }
+    ],
+    "2.2 Implement noon-UTC default timezone assumption and record `tz_assumption` in the facts object [R3.6]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214233
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782688055160
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782688131484
+      }
+    ],
+    "2.3 Implement moon-cusp detection for ambiguous moon sign days, and set rising to null when time/location absent [R3.4, R3.2, R3.3]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214235
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782688134336
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782688294094
+      }
+    ],
+    "2.4 Write unit tests for each degradation tier (full / date_only / estimated / mystery) using known fixtures [R3.1, R3.7] {depends: 2.1, 2.2, 2.3}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214238
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782688296984
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782688399797
+      }
+    ],
+    "3.1 Author the single reusable Madame Minou system prompt (persona voice for natal, behavior, and nudge readings) [R2.1, R2.3]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214241
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782688408260
+      },
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782688537740
+      }
+    ],
+    "3.2 Implement the server endpoint: receive facts object, call AnthropicAWS with persona prompt + facts as user content, return reading_text; model never alters facts [R4.2, R4.3, R11.2]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214243
+      }
+    ],
+    "3.3 Implement try/catch with in-voice error state (\"Madame Minou's crystal ball is cloudy\") on AI call failure or timeout [R4.5, R11.5]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214245
+      }
+    ],
+    "3.4 Build with a mock AI response first to validate the data flow, then wire the real AnthropicAWS call [R4.2] {depends: 3.1, 3.2}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214248
+      }
+    ],
+    "4.1 Build the cafe-terrace-at-night landing page with the single \"Consult Madame Minou\" CTA (original art in Van Gogh idiom) [R1.1, R5.1]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214250
+      }
+    ],
+    "4.2 Build the one-question-at-a-time consultation flow (name, then date) with reliable accessible date input and unknown-birthday path [R1.2, R1.3, R1.4, R1.5, R1.6]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214253
+      }
+    ],
+    "4.3 Build the reveal sequence: anticipation beat animation covering AI latency, card flourish on response; respect prefers-reduced-motion [R5.2, R5.3, R5.4, R13.2] {depends: 4.1, 4.2}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214255
+      }
+    ],
+    "4.4 Build the single card renderer component (one component rendering natal, behavior, and nudge reads) [R4.1, R4.4]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214257
+      }
+    ],
+    "4.5 Build the progressive \"go deeper\" offer for birth time/location after the first reading [R1.7] {depends: 4.3, 4.4}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214260
+      }
+    ],
+    "5.1 Implement card-to-image rendering (html-to-image/canvas) with download and Web Share API; no server storage required [R7.1, R7.2]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214262
+      }
+    ],
+    "5.2 Ensure all outbound links open in a new tab with `rel=\"noopener noreferrer\"` [R7.3]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214264
+      }
+    ],
+    "5.3 Implement opt-in French-chanson ambient audio bed: muted by default, always-reachable toggle, localStorage preference, swell on consult click, no separate chime [R6.1, R6.2, R6.3]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214266
+      }
+    ],
+    "6.1 Build behavior-log input with client-side + server-side validation, length cap, kept in user-content slot only (never system prompt) [R9.5, R11.3]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214268
+      }
+    ],
+    "6.2 Implement behavior read card cross-referencing current transits against natal chart [R9.1] {depends: 6.1}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214270
+      }
+    ],
+    "6.3 Implement deterministic red-flag keyword scan; surface vet-care line and suppress astrological framing when triggered [R8.2, R8.3] {depends: 6.1}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214273
+      }
+    ],
+    "6.4 Display persistent care disclaimer on About page and on every behavior read output [R8.1] {depends: 6.2, 6.3}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214275
+      }
+    ],
+    "6.5 Implement localStorage free-read counter (UX) + server-side per-IP rate limit enforcing daily allowance with paywall/upgrade prompt on exceed [R9.2, R9.3, R9.4] {depends: 6.2}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214277
+      }
+    ],
+    "7.1 Build About page with Paris origin (dev.to link), Penelope dedication + tie line, and attribution (Clew Labs, repo, dev.to, Madame Steep cross-link) [R10.1]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214279
+      }
+    ],
+    "7.2 Add discreet \"In Penelope's memory\" acknowledgment linking to Lap of Love Angel Fund (verified live, new tab, no donation collection) [R10.2, R10.3, R10.4]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214281
+      }
+    ],
+    "7.3 Seed the landing with Penelope's own origin reading as a demo [R10.1] {depends: 7.1}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214284
+      }
+    ],
+    "8.1 Confirm all credentials and API keys are server-side only (IAM role / Secrets Manager); verify least-privilege IAM policy [R11.1, R11.2, R11.6]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214286
+      }
+    ],
+    "8.2 Configure HTTPS with tight CORS (own origin only) [R11.4]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214289
+      }
+    ],
+    "8.3 Run the Aikido security scan and capture the report [R11.7] {depends: 8.1, 8.2}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214291
+      }
+    ],
+    "8.4 Write README + architecture overview + setup instructions + security report [R11.7] {depends: 8.3}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214293
+      }
+    ],
+    "8.5 Record the <5 min demo video: live loop walkthrough, architecture, durable execution, Aikido scan, prompt-injection protection, welfare impact, Penelope dedication {depends: 8.4}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214295
+      }
+    ],
+    "9.1 Build opt-in email form; on opt-in store {email, cat_facts, schedule} server-side for subscriber only [R12.1, R12.2]": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214297
+      }
+    ],
+    "9.2 Implement Temporal/durable daily workflow: compute transits, generate AI nudge card, send via SES email; retry without double-send [R12.3] {depends: 9.1}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214304
+      }
+    ],
+    "9.3 If unfinished by deadline, render opt-in as STUB (\"Daily readings, coming soon\") and confirm core app is unaffected [R12.4] {depends: 9.1}": [
+      {
+        "executionId": "3711e88b-0424-4d20-9e3b-d6b6b88ad12a",
+        "chatSessionId": "6907cae3-b81a-4978-9c0b-78093f041f1d",
+        "timestamp": 1782687214306
+      }
+    ]
+  }
+}

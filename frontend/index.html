@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madame Minou — Deploy Spike</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      background: #1a1a2e;
+      color: #e0c097;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .subtitle { font-style: italic; margin-bottom: 2rem; opacity: 0.8; }
+    #result {
+      background: #16213e;
+      border: 1px solid #e0c097;
+      border-radius: 8px;
+      padding: 1.5rem;
+      max-width: 500px;
+      width: 100%;
+      min-height: 80px;
+      text-align: center;
+    }
+    #result.loading { opacity: 0.6; }
+    #result.error { border-color: #ff6b6b; color: #ff6b6b; }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      background: #e0c097;
+      color: #1a1a2e;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover { background: #f0d0a7; }
+    .status { margin-top: 1rem; font-size: 0.85rem; opacity: 0.6; }
+  </style>
+</head>
+<body>
+  <h1>Madame Minou</h1>
+  <p class="subtitle">Deploy Spike — Block 0</p>
+
+  <div id="result">Waiting for Madame...</div>
+
+  <button id="callBtn" onclick="callLambda()">Call the Lambda</button>
+
+  <p class="status">
+    API endpoint: <code id="apiUrl">not configured</code>
+  </p>
+
+  <script>
+    // ─── Configuration ───────────────────────────────────────────────────
+    // After deploying with SAM, replace this with the actual API Gateway URL
+    // from the stack outputs (ApiUrl).
+    const API_BASE = window.__MINOU_API_URL__ || '';
+
+    const resultEl = document.getElementById('result');
+    const apiUrlEl = document.getElementById('apiUrl');
+
+    if (API_BASE) {
+      apiUrlEl.textContent = API_BASE + '/hello';
+    } else {
+      apiUrlEl.textContent = '(set window.__MINOU_API_URL__ or update API_BASE after deploy)';
+    }
+
+    async function callLambda() {
+      if (!API_BASE) {
+        resultEl.className = 'error';
+        resultEl.textContent = 'API_BASE not set. Deploy first, then update the URL.';
+        return;
+      }
+
+      resultEl.className = 'loading';
+      resultEl.textContent = 'Consulting the stars...';
+
+      try {
+        const res = await fetch(API_BASE + '/hello', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const data = await res.json();
+        resultEl.className = '';
+        resultEl.textContent = data.message || JSON.stringify(data);
+      } catch (err) {
+        resultEl.className = 'error';
+        resultEl.textContent = `Error: ${err.message}`;
+      }
+    }
+  </script>
+</body>
+</html>
