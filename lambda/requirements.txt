@@ -1,2 +1,2 @@
-# Block 0 spike: no extra dependencies beyond the standard library.
-# Production will add: pyswisseph, anthropic[aws]
+# Madame Minou Lambda dependencies (Block 2+)
+anthropic[aws]>=0.52.0
