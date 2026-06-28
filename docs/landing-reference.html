@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--
+  Madame Minou: landing REFERENCE (scaled + cleaned).
+  Changes from the Stitch export:
+   1. Hero art is now a contained ~42vh banner (was 751px) so the CTA, speech bubble,
+      and sample reading card are visible without heavy scrolling.
+   2. Sample reading ("results") card surfaced right under the CTA.
+   3. "History" nav = greyed, disabled v2 stub (aria-disabled). "View History" removed from card.
+   4. Icon controls are real <button>s with aria-labels. Dead JS (lamplight/​swirl/global-transform) removed.
+   5. Deduped font link.
+  STILL a reference: production uses a real Tailwind build (not the Play CDN) and a locally hosted hero image.
+-->
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Madame Minou | Are cats even real?</title>
+<!-- Play CDN = preview only. Production: real Tailwind build. -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Manrope:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: { extend: {
+      colors: {
+        "background": "#0f1321",
+        "surface": "#0f1321",
+        "midnight-blue": "#0A142F",
+        "primary": "#ffd273",
+        "primary-container": "#ebb42b",
+        "on-primary": "#402d00",
+        "starlight-gold": "#FDF3A7",
+        "secondary": "#b3c6fb",
+        "tertiary": "#ffcdc0",
+        "impasto-white": "#F4F1EA",
+        "on-surface": "#dfe1f6",
+        "on-surface-variant": "#d3c5ae",
+        "outline": "#9b8f7a"
+      },
+      borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+      spacing: { "gutter": "16px", "reading-width": "600px" },
+      fontFamily: { "display": ["Playfair Display"], "body": ["Manrope"] }
+    } }
+  }
+</script>
+<style>
+  body {
+    background-color: #080C1A;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(10,20,47,0.4) 0, transparent 50%),
+      radial-gradient(at 50% 0%, rgba(235,180,43,0.05) 0, transparent 50%);
+    overflow-x: hidden;
+  }
+  .impasto-texture {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.03; pointer-events: none;
+  }
+  .fade-float { animation: fadeFloat 4s ease-in-out infinite; }
+  @keyframes fadeFloat { 0%,100% { transform: translateY(0); opacity: .92; } 50% { transform: translateY(-8px); opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .fade-float { animation: none; } }
+  .painterly-border { border-bottom: 3px solid #ebb42b; }
+</style>
+</head>
+<body class="font-body text-on-surface min-h-screen selection:bg-primary selection:text-on-primary">
+<div class="fixed inset-0 impasto-texture z-0"></div>
+
+<!-- Top bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-surface/80 backdrop-blur-md border-b border-primary/20">
+  <div class="flex items-center gap-2">
+    <button aria-label="Open menu" class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">menu</button>
+    <h1 class="font-display text-2xl text-primary tracking-tight">Madame Minou</h1>
+  </div>
+  <button aria-label="Settings" class="material-symbols-outlined text-primary hover:text-starlight-gold transition-colors" style="font-variation-settings:'FILL' 1;">auto_awesome</button>
+</header>
+
+<main class="relative z-10 pt-16 pb-32">
+  <!-- Hero band: contained, not full-screen -->
+  <section class="relative w-full h-[42vh] min-h-[300px] max-h-[460px] flex flex-col items-center justify-center text-center px-gutter overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <div class="w-full h-full bg-cover bg-center opacity-70"
+           role="img"
+           aria-label="A tuxedo cat in a small red beret at a candlelit Parisian café table at night, painterly Van Gogh starry-night style."
+           style="background-image:url('../assets/hero.png')"></div>
+      <!-- fade into the night so text below reads -->
+      <div class="absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background"></div>
+    </div>
+    <div class="relative z-10 fade-float">
+      <h2 class="font-display text-[44px] md:text-[72px] text-starlight-gold leading-none tracking-tight">Madame Minou</h2>
+      <p class="font-body text-secondary italic mt-3 text-lg md:text-xl opacity-90">"Are cats even real?"</p>
+    </div>
+  </section>
+
+  <!-- Content: CTA + speech bubble + results card, all visible -->
+  <section class="max-w-reading-width mx-auto px-gutter -mt-6 relative z-20">
+    <div class="flex justify-center mb-10">
+      <button class="bg-primary text-on-primary font-bold px-9 py-4 rounded-lg uppercase tracking-widest painterly-border transition-transform hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(235,180,43,0.3)]">
+        Consult Madame Minou
+        <span class="material-symbols-outlined align-middle ml-1">arrow_right_alt</span>
+      </button>
+    </div>
+
+    <!-- Madame Minou speaks -->
+    <div class="mb-8 flex justify-start">
+      <div class="bg-midnight-blue border border-starlight-gold/20 p-5 rounded-xl rounded-bl-none shadow-2xl max-w-[90%] fade-float">
+        <p class="text-impasto-white font-body italic">"Welcome, traveler. My whiskers sense a question about the unknown. Shall we peek through the veil?"</p>
+      </div>
+    </div>
+
+    <!-- Sample reading (results) card -->
+    <div class="bg-midnight-blue/80 backdrop-blur-xl border border-starlight-gold/20 rounded-xl p-7 shadow-2xl relative">
+      <h3 class="font-display text-2xl text-primary mb-1">A Sample Whisper</h3>
+      <p class="text-on-surface-variant text-xs mb-5 uppercase tracking-widest">Date: L'heure Bleue</p>
+      <p class="text-on-surface/90 leading-relaxed border-l-2 border-primary/30 pl-5 italic">
+        "The tuxedo moon rises over the 7th Arrondissement. Your feline companion isn't just staring at the wall, they are monitoring the subtle frequency shifts of the multiverse. Today, trust the quiet paws over the loud voices."
+      </p>
+      <div class="mt-6 flex items-center justify-between border-t border-primary/10 pt-5">
+        <button aria-label="Hear Madame Minou read this aloud" class="flex items-center gap-2 text-primary/70 hover:text-primary transition-colors text-xs uppercase tracking-widest">
+          <span class="material-symbols-outlined text-base">volume_up</span> Hear Madame Minou
+        </button>
+        <button aria-label="Share this reading" class="flex items-center gap-2 text-secondary hover:text-primary transition-colors text-xs uppercase tracking-widest">
+          Share <span class="material-symbols-outlined text-base">ios_share</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- About link -->
+    <div class="mt-12 text-center">
+      <a href="#" class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-widest">
+        <span class="w-8 h-px bg-on-surface-variant/30"></span> About the Oracle <span class="w-8 h-px bg-on-surface-variant/30"></span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<!-- Bottom nav: History is a greyed v2 stub -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-midnight-blue/90 backdrop-blur-lg border-t border-starlight-gold/20 rounded-t-xl">
+  <a href="#" class="flex flex-col items-center text-primary font-bold">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">auto_fix_high</span>
+    <span class="text-xs">Consult</span>
+  </a>
+  <a href="#" class="flex flex-col items-center text-on-surface-variant/70 hover:text-primary/80 transition-colors">
+    <span class="material-symbols-outlined">menu_book</span>
+    <span class="text-xs">Log</span>
+  </a>
+  <span aria-disabled="true" title="Coming soon" class="flex flex-col items-center text-on-surface-variant/30 cursor-not-allowed relative">
+    <span class="material-symbols-outlined">history_edu</span>
+    <span class="text-xs">History</span>
+    <span class="absolute -top-1 right-0 text-[8px] uppercase tracking-wider text-tertiary/70">soon</span>
+  </span>
+  <a href="#" class="flex flex-col items-center text-on-surface-variant/70 hover:text-primary/80 transition-colors">
+    <span class="material-symbols-outlined">pets</span>
+    <span class="text-xs">About</span>
+  </a>
+</nav>
+</body>
+</html>

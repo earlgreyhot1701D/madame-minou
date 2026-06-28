@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Madame Minou | Are cats even real?</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Manrope:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#252939",
+                        "surface-container": "#1b1f2e",
+                        "on-error": "#690005",
+                        "midnight-blue": "#0A142F",
+                        "on-tertiary-container": "#912200",
+                        "surface": "#0f1321",
+                        "cobblestone-gray": "#3D4251",
+                        "on-tertiary": "#611300",
+                        "secondary-fixed-dim": "#b3c6fb",
+                        "surface-dim": "#0f1321",
+                        "surface-tint": "#f6be35",
+                        "surface-container-highest": "#303444",
+                        "surface-variant": "#303444",
+                        "secondary-fixed": "#dae2ff",
+                        "inverse-surface": "#dfe1f6",
+                        "on-secondary-fixed-variant": "#334573",
+                        "on-surface-variant": "#d3c5ae",
+                        "on-tertiary-fixed": "#3c0800",
+                        "tertiary-fixed-dim": "#ffb5a1",
+                        "on-secondary-fixed": "#011945",
+                        "lamplight-glow": "rgba(235, 180, 43, 0.15)",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#ffd273",
+                        "primary-container": "#ebb42b",
+                        "on-primary-fixed": "#261a00",
+                        "impasto-white": "#F4F1EA",
+                        "tertiary-fixed": "#ffdbd1",
+                        "on-primary": "#402d00",
+                        "outline-variant": "#4f4634",
+                        "error-container": "#93000a",
+                        "secondary": "#b3c6fb",
+                        "on-background": "#dfe1f6",
+                        "primary-fixed-dim": "#f6be35",
+                        "surface-bright": "#353948",
+                        "tertiary": "#ffcdc0",
+                        "on-tertiary-fixed-variant": "#881f00",
+                        "secondary-container": "#334573",
+                        "surface-container-low": "#171b2a",
+                        "starlight-gold": "#FDF3A7",
+                        "on-secondary": "#1b2f5b",
+                        "error": "#ffb4ab",
+                        "outline": "#9b8f7a",
+                        "inverse-primary": "#795900",
+                        "on-secondary-container": "#a2b4e8",
+                        "on-primary-container": "#624700",
+                        "on-primary-fixed-variant": "#5c4300",
+                        "on-surface": "#dfe1f6",
+                        "background": "#0f1321",
+                        "tertiary-container": "#ffa68e",
+                        "inverse-on-surface": "#2c303f",
+                        "surface-container-lowest": "#090e1c",
+                        "primary-fixed": "#ffdf9f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "margin-desktop": "64px",
+                        "reading-width": "600px",
+                        "margin-mobile": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Manrope"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Manrope"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #080C1A;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(10, 20, 47, 0.4) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, rgba(235, 180, 43, 0.05) 0, transparent 50%);
+            overflow-x: hidden;
+        }
+        .painterly-border {
+            border-bottom-width: 3px;
+            border-bottom-style: solid;
+            border-bottom-color: #ebb42b;
+        }
+        .impasto-texture {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        .swirl-animation {
+            animation: swirl 20s infinite linear;
+        }
+        @keyframes swirl {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .fade-float {
+            animation: fadeFloat 4s ease-in-out infinite;
+        }
+        @keyframes fadeFloat {
+            0%, 100% { transform: translateY(0); opacity: 0.9; }
+            50% { transform: translateY(-10px); opacity: 1; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-on-surface selection:bg-primary selection:text-on-primary min-h-screen">
+<div class="fixed inset-0 impasto-texture z-0"></div>
+<!-- Navigation Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-surface/80 backdrop-blur-md border-b border-primary/20 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">menu</span>
+<h1 class="font-display-lg text-headline-lg-mobile text-primary tracking-tight">Madame Minou</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary hover:text-starlight-gold transition-colors" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</header>
+<main class="relative z-10 pt-16 pb-32 overflow-hidden">
+<!-- Hero Section -->
+<section class="relative w-full h-[751px] flex flex-col items-center justify-center text-center px-gutter">
+<!-- Full-bleed background art placeholder -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-60" data-alt="A tuxedo cat sitting at a candlelit café table at night, wearing a small, stylish red beret. The style is painterly and impressionistic, reminiscent of Van Gogh's Starry Night, with swirling celestial patterns, deep navy blues, and warm amber lamplight." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5hl-drrRuf9VzuXl9ZbcFm-XkpRPuvdyLdKm3U200P9aj2iNIvG62FB5RnR1skaJhAG52m6w_knnYxpiT8A91PJmbjNObL2y50lHP0vnvYDEep4cD6PA2z6tj31NNa2aIQsJE3HgcsYc7nSvlKekh8XP2qhi0esXlnCDKm8Pgii27B2lMzs7Vatrtck2kzwyAe_1ViInp4ZFXHM8xwoaJ1ev7NLqaKPMa5IlMWUse200ZIwr1dmbzSC9GPVikyNhTMD-i4x7oVDtI')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</div>
+<!-- Hero Content -->
+<div class="relative z-10 max-w-[800px]">
+<h2 class="font-display-lg text-[64px] md:text-[88px] text-starlight-gold mb-4 leading-none tracking-tighter fade-float">
+                    Madame Minou
+                </h2>
+<p class="font-body-lg text-secondary italic mb-12 text-xl md:text-2xl opacity-90">
+                    "Are cats even real?"
+                </p>
+</div>
+</section>
+<!-- Sample Reading & About -->
+<section class="max-w-reading-width mx-auto px-gutter mt-[-80px] relative z-20"><div class="mb-12 flex flex-col items-center">
+<button class="bg-primary text-on-primary font-bold px-10 py-5 rounded-lg text-lg uppercase tracking-widest painterly-border transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(235,180,43,0.3)] group">
+                        Consult Madame Minou
+                        <span class="material-symbols-outlined align-middle ml-2 group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+</button>
+</div>
+<!-- Speech Bubble -->
+<div class="mb-12 flex justify-start">
+<div class="bg-midnight-blue border border-starlight-gold/20 p-6 rounded-2xl rounded-bl-none shadow-2xl relative max-w-[90%] fade-float">
+<p class="text-impasto-white font-body-lg italic">
+                        "Welcome, traveler. My whiskers sense a question about the unknown. Shall we peek through the veil?"
+                    </p>
+</div>
+</div>
+<!-- Demo Reading Card -->
+<div class="bg-midnight-blue/80 backdrop-blur-xl border border-starlight-gold/20 rounded-xl p-8 shadow-2xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-30 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+</div>
+<h3 class="font-headline-lg text-primary mb-2">A Sample Whisper</h3>
+<p class="text-on-surface-variant font-label-sm mb-6 uppercase tracking-widest">Date: L’heure Bleue</p>
+<div class="space-y-4 text-on-surface/90 font-body-md leading-relaxed border-l-2 border-primary/30 pl-6 italic">
+                    "The tuxedo moon rises over the 7th Arrondissement. Your feline companion isn't just staring at the wall—they are monitoring the subtle frequency shifts of the multiverse. Today, trust the quiet paws over the loud voices."
+                </div>
+<div class="mt-8 flex items-center justify-between border-t border-primary/10 pt-6">
+<div class="flex items-center gap-2 text-primary/70">
+<span class="material-symbols-outlined text-sm">volume_up</span>
+<span class="font-label-sm">Hear Madame Minou</span>
+</div>
+<button class="text-secondary font-label-sm hover:text-primary transition-colors flex items-center gap-1">
+                        View History <span class="material-symbols-outlined text-sm">history</span>
+</button>
+</div>
+</div>
+<!-- About Link -->
+<div class="mt-16 text-center">
+<a class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-label-sm group" href="#">
+<span class="w-8 h-px bg-on-surface-variant/30 group-hover:bg-primary/50 transition-colors"></span>
+                    ABOUT THE ORACLE
+                    <span class="w-8 h-px bg-on-surface-variant/30 group-hover:bg-primary/50 transition-colors"></span>
+</a>
+</div>
+</section>
+<!-- Visual Flairs -->
+<div class="absolute top-1/4 -left-32 w-64 h-64 bg-primary/10 blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/10 blur-[150px] pointer-events-none"></div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-midnight-blue/90 backdrop-blur-lg border-t border-starlight-gold/20 shadow-[0_-4px_20px_rgba(235,180,43,0.1)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+<span class="font-label-sm text-label-sm">Consult</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary/80 transition-all" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-sm text-label-sm">Log</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary/80 transition-all" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-label-sm text-label-sm">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary/80 transition-all" href="#">
+<span class="material-symbols-outlined">pets</span>
+<span class="font-label-sm text-label-sm">About</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for painterly feel
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.95)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1.05)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+
+        // Atmospheric flicker for "lamplight"
+        const lights = document.querySelectorAll('.lamplight-glow');
+        setInterval(() => {
+            lights.forEach(light => {
+                light.style.opacity = (Math.random() * 0.1 + 0.1).toString();
+            });
+        }, 100);
+    </script>
+</body></html>
