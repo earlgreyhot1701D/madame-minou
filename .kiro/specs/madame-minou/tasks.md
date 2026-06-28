@@ -9,11 +9,11 @@
 ## Task 2: Chart engine {depends: 1}
 - [x] 2.1 Implement the deterministic chart function producing the structured facts object with all degradation tiers (full / date_only / estimated / mystery) [R3.1, R3.2, R3.3, R3.5, R3.7]
 - [x] 2.2 Implement noon-UTC default timezone assumption and record `tz_assumption` in the facts object [R3.6]
-- [-] 2.3 Implement moon-cusp detection for ambiguous moon sign days, and set rising to null when time/location absent [R3.4, R3.2, R3.3]
-- [~] 2.4 Write unit tests for each degradation tier (full / date_only / estimated / mystery) using known fixtures [R3.1, R3.7] {depends: 2.1, 2.2, 2.3}
+- [x] 2.3 Implement moon-cusp detection for ambiguous moon sign days, and set rising to null when time/location absent [R3.4, R3.2, R3.3]
+- [x] 2.4 Write unit tests for each degradation tier (full / date_only / estimated / mystery) using known fixtures [R3.1, R3.7] {depends: 2.1, 2.2, 2.3}
 
 ## Task 3: AI reading layer {depends: 2}
-- [~] 3.1 Author the single reusable Madame Minou system prompt (persona voice for natal, behavior, and nudge readings) [R2.1, R2.3]
+- [x] 3.1 Author the single reusable Madame Minou system prompt (persona voice for natal, behavior, and nudge readings) [R2.1, R2.3]
 - [~] 3.2 Implement the server endpoint: receive facts object, call AnthropicAWS with persona prompt + facts as user content, return reading_text; model never alters facts [R4.2, R4.3, R11.2]
 - [~] 3.3 Implement try/catch with in-voice error state ("Madame Minou's crystal ball is cloudy") on AI call failure or timeout [R4.5, R11.5]
 - [~] 3.4 Build with a mock AI response first to validate the data flow, then wire the real AnthropicAWS call [R4.2] {depends: 3.1, 3.2}
