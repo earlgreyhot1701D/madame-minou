@@ -1,0 +1,2 @@
+# Block 0 spike: no extra dependencies beyond the standard library.
+# Production will add: pyswisseph, anthropic[aws]

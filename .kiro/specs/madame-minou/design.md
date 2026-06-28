@@ -6,9 +6,9 @@
 
 ---
 
-## 0. Stack decision (recommendation, vetoable)
+## 0. Stack decision (LOCKED)
 
-**All-in AWS**, recommended because the chart engine is Python (natural Lambda fit), the exploration goal is AWS, and the judging panel is AWS-heavy.
+**All-in AWS** (LOCKED). Chosen because the chart engine is Python (natural Lambda fit), the exploration goal is AWS, and the judging panel is AWS-heavy.
 
 - **Frontend:** static site (HTML/CSS/JS or a light framework) on **S3 + CloudFront**, or **Amplify Hosting** for push-to-deploy.
 - **Server endpoints:** **AWS Lambda** (Python) behind **API Gateway**. Two endpoints in v1: `POST /reading` (natal) and `POST /behavior` (behavior read).

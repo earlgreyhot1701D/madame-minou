@@ -2,14 +2,20 @@
 
 *Persistent technical context. The stack, the AI integration, and the determinism contract. Full detail lives in `docs/build-reference.md`.*
 
-## Stack
+## Stack (LOCKED — all-in AWS)
 
-- Frontend: static site on S3 + CloudFront (or Amplify Hosting).
-- Server: AWS Lambda (Python) behind API Gateway. v1 endpoints: `POST /reading`, `POST /behavior`.
-- Chart engine: Python + Swiss Ephemeris (pyswisseph). Deterministic.
-- AI: Claude Platform on AWS via the `AnthropicAWS` client.
-- Voice (STRETCH): AWS Polly French neural.
-- Build tool: Kiro (2000 free credits + Kiro Pro), spec-driven, this `.kiro/` folder. Kiro Track opt-in: yes.
+Platform decision is LOCKED. No non-AWS hosting or services without explicit approval.
+
+- **Frontend:** S3 + CloudFront (or Amplify Hosting)
+- **Backend:** AWS Lambda (Python) + API Gateway
+- **AI:** Claude Platform on AWS (`AnthropicAWS` client). Fallback: Amazon Bedrock.
+- **Voice (STRETCH):** Amazon Polly French neural
+- **Secrets/identity:** IAM roles + Secrets Manager; keys server-side only
+- **Logging:** CloudWatch (alarms = v2 stub)
+- **Chart engine:** Python + Swiss Ephemeris (pyswisseph). Deterministic.
+- **Build tool:** Kiro (spec-driven, this `.kiro/` folder). Kiro Track opt-in: yes.
+
+The app MUST deploy to a live public HTTPS URL for judging (July 8–14). No non-AWS hosting or services without flagging it first.
 
 ## Claude Platform on AWS (the AI layer)
 
