@@ -6,7 +6,7 @@ Description: >
 
 Globals:
   Function:
-    Timeout: 35  # 30s AI timeout + 5s overhead
+    Timeout: 29  # Must not exceed API Gateway REST API's ~29s integration timeout
     Runtime: python3.11
     MemorySize: 256
 
@@ -31,6 +31,7 @@ Resources:
       Description: Madame Minou reading endpoint — chart facts → AI voice → reading_text
       Environment:
         Variables:
+          # Deploy region must match the Claude Platform on AWS workspace (us-east-1)
           AWS_REGION: !Ref AWS::Region
           ANTHROPIC_AWS_WORKSPACE_ID: '{{resolve:ssm:/madame-minou/workspace-id}}'
           MINOU_MODEL: claude-sonnet-4-6

@@ -18,7 +18,8 @@ import os
 import sys
 
 # Add project root to path so we can import server.prompts
-# In Lambda, the code is at /var/task/; locally we need parent dir
+# In Lambda, server/ is copied alongside handler.py by deploy.sh.
+# Locally, sys.path.insert handles the import from the project root.
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from server.prompts.madame_minou import (
@@ -30,8 +31,8 @@ from server.prompts.madame_minou import (
 # Configuration
 # ---------------------------------------------------------------------------
 
-# Region MUST match the Claude Platform on AWS workspace region
-AWS_REGION = os.environ.get("AWS_REGION", "us-west-2")
+# Region MUST match the Claude Platform on AWS workspace region (us-east-1)
+AWS_REGION = os.environ.get("AWS_REGION", "us-east-1")
 
 # Model selection: claude-sonnet-4-6 for marquee quality natal/behavior reads
 # Allow override via env var for testing or cost control
@@ -41,7 +42,8 @@ MINOU_MODEL = os.environ.get("MINOU_MODEL", "claude-sonnet-4-6")
 MINOU_MOCK_AI = os.environ.get("MINOU_MOCK_AI", "false").lower() == "true"
 
 # AI call timeout (seconds)
-AI_TIMEOUT_SECONDS = 30.0
+# API Gateway REST API caps at ~29s; keep AI call well under that ceiling
+AI_TIMEOUT_SECONDS = 25.0
 
 # In-voice error message — NEVER return a stack trace or blank screen
 IN_VOICE_ERROR = (
@@ -56,6 +58,47 @@ CORS_HEADERS = {
     "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
 }
+
+
+# ---------------------------------------------------------------------------
+# Input validation / sanitization (R9.5, R11.3)
+# Full implementation in Block 5; basic caps here to prevent abuse
+# ---------------------------------------------------------------------------
+
+MAX_CAT_NAME_LENGTH = 100
+MAX_BEHAVIOR_LENGTH = 1000  # Block 5 will enforce tighter + server-side validation
+MAX_FIELD_LENGTH = 200  # For sun, moon, rising, transit fields
+
+
+def _sanitize_facts(facts: dict) -> dict:
+    """
+    Sanitize and length-cap incoming facts fields.
+
+    Keeps system-prompt isolation intact: behavior text stays in user-content
+    slot only, never concatenated into system prompt.
+    """
+    sanitized = {}
+
+    # String fields with length caps
+    sanitized["cat_name"] = str(facts.get("cat_name", ""))[:MAX_CAT_NAME_LENGTH].strip()
+    sanitized["chart_tier"] = str(facts.get("chart_tier", "mystery"))[:50]
+    sanitized["sun"] = str(facts.get("sun", ""))[:MAX_FIELD_LENGTH].strip() or None
+    sanitized["moon"] = str(facts.get("moon", ""))[:MAX_FIELD_LENGTH].strip() or None
+    sanitized["rising"] = str(facts.get("rising", ""))[:MAX_FIELD_LENGTH].strip() or None
+    sanitized["notable_transit"] = str(facts.get("notable_transit", ""))[:MAX_FIELD_LENGTH].strip() or None
+    sanitized["tz_assumption"] = str(facts.get("tz_assumption", ""))[:MAX_FIELD_LENGTH].strip() or None
+
+    # Boolean
+    sanitized["moon_cusp"] = bool(facts.get("moon_cusp", False))
+
+    # Behavior: length-capped, stays in user-content slot only (R11.3)
+    behavior = facts.get("behavior")
+    if behavior:
+        sanitized["behavior"] = str(behavior)[:MAX_BEHAVIOR_LENGTH].strip() or None
+    else:
+        sanitized["behavior"] = None
+
+    return sanitized
 
 
 # ---------------------------------------------------------------------------
@@ -159,6 +202,9 @@ def _handle_reading(event):
 
     facts = body.get("facts", body)  # Accept {facts: {...}} or flat facts object
     reading_type = body.get("reading_type", "natal")
+
+    # Sanitize inputs (length caps, type coercion) — R9.5, R11.3
+    facts = _sanitize_facts(facts)
 
     # Validate minimum required fields
     if not facts.get("cat_name"):

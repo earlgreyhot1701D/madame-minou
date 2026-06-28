@@ -46,6 +46,11 @@ fi
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 info "Deploying as account: ${ACCOUNT_ID} in region: ${REGION}"
 
+# ─── Step 0.5: Package server module with Lambda ─────────────────────────────
+info "Packaging server/ module into lambda/ for deployment..."
+rm -rf lambda/server
+cp -r server lambda/server
+
 # ─── Step 1: SAM build ───────────────────────────────────────────────────────
 info "Building SAM application..."
 sam build --template-file template.yaml
@@ -100,6 +105,10 @@ echo "  S3 bucket:     ${FRONTEND_BUCKET}"
 echo ""
 echo "  Test: curl ${API_URL}"
 echo "═══════════════════════════════════════════════════════════════════"
+
+# ─── Step 5: Clean up deploy artifacts ────────────────────────────────────────
+info "Cleaning up lambda/server/ copy..."
+rm -rf lambda/server
 
 # ─── Fallback note ────────────────────────────────────────────────────────────
 cat <<'EOF'
