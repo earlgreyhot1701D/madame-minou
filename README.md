@@ -31,6 +31,10 @@ Spec-driven development with Kiro. Start at **`.kiro/specs/madame-minou/tasks.md
 - **AI voice:** Claude Platform on AWS
 - **Contract:** the chart computes the facts; the model only writes the voice. Determinism is the differentiator.
 
+## Region
+
+The Claude Platform on AWS workspace and all infrastructure are in `us-east-1`. Do not change the region without also migrating the workspace.
+
 ## Principle
 
 Deterministic structure, AI flavor. Whimsy on top, honest scaffolding underneath. And a line that is never buried: *Madame Minou reads stars, not bloodwork.* She is for delight and for paying closer attention to your cat, not a substitute for a vet.

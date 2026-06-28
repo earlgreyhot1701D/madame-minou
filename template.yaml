@@ -1,35 +1,53 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Madame Minou — deploy spike (Block 0).
-  Hello-world Lambda + API Gateway + S3 static hosting via CloudFront.
+  Madame Minou — AI astrology readings for cats.
+  Lambda (chart engine + AI reading) + API Gateway + S3 static hosting via CloudFront.
 
 Globals:
   Function:
-    Timeout: 10
+    Timeout: 29  # Must not exceed API Gateway REST API's ~29s integration timeout
     Runtime: python3.11
-    MemorySize: 128
+    MemorySize: 256
 
 Parameters:
   Stage:
     Type: String
     Default: prod
     AllowedValues: [dev, prod]
+  AllowedOrigin:
+    Type: String
+    Default: '*'
+    Description: "Set to CloudFront domain in prod; * for local dev"
+    # Tighten to CloudFront origin before going public
 
 Resources:
-  # ─── Lambda: hello-world endpoint ───────────────────────────────────────
-  HelloFunction:
+  # ─── Lambda: reading endpoint ───────────────────────────────────────────
+  ReadingFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: handler.lambda_handler
       CodeUri: lambda/
-      Description: Hello-world spike — confirms Lambda + API Gateway path works
+      Description: Madame Minou reading endpoint — chart facts → AI voice → reading_text
+      Environment:
+        Variables:
+          # Deploy region must match the Claude Platform on AWS workspace (us-east-1)
+          AWS_REGION: !Ref AWS::Region
+          ANTHROPIC_AWS_WORKSPACE_ID: '{{resolve:ssm:/madame-minou/workspace-id}}'
+          MINOU_MODEL: claude-sonnet-4-6
+          MINOU_MOCK_AI: 'false'
       Events:
-        HelloApi:
+        HealthApi:
           Type: Api
           Properties:
-            Path: /hello
+            Path: /health
             Method: get
+            RestApiId: !Ref MinouApi
+        ReadingApi:
+          Type: Api
+          Properties:
+            Path: /reading
+            Method: post
             RestApiId: !Ref MinouApi
 
   # ─── API Gateway ────────────────────────────────────────────────────────
@@ -40,7 +58,8 @@ Resources:
       Cors:
         AllowMethods: "'GET,POST,OPTIONS'"
         AllowHeaders: "'Content-Type'"
-        AllowOrigin: "'*'"   # tighten to CloudFront origin in production
+        AllowOrigin: !Sub "'${AllowedOrigin}'"
+        # Tighten to CloudFront origin before going public
 
   # ─── S3 bucket for static frontend ─────────────────────────────────────
   FrontendBucket:
@@ -99,8 +118,11 @@ Resources:
 
 Outputs:
   ApiUrl:
-    Description: API Gateway URL for the hello endpoint
-    Value: !Sub 'https://${MinouApi}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/hello'
+    Description: API Gateway URL for the reading endpoint
+    Value: !Sub 'https://${MinouApi}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/reading'
+  HealthUrl:
+    Description: API Gateway URL for the health check
+    Value: !Sub 'https://${MinouApi}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/health'
   FrontendUrl:
     Description: CloudFront URL for the static frontend
     Value: !Sub 'https://${FrontendDistribution.DomainName}'

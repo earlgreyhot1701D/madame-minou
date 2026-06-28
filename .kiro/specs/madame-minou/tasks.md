@@ -34,6 +34,7 @@
 - [~] 6.1 Build behavior-log input with client-side + server-side validation, length cap, kept in user-content slot only (never system prompt) [R9.5, R11.3]
 - [~] 6.2 Implement behavior read card cross-referencing current transits against natal chart [R9.1] {depends: 6.1}
 - [~] 6.3 Implement deterministic red-flag keyword scan; surface vet-care line and suppress astrological framing when triggered [R8.2, R8.3] {depends: 6.1}
+  - [ ] 6.3.1 Red-flag keyword scan MUST be deterministic code (not LLM): scan behavior text for exact keywords (not eating, not urinating, repeated vomiting, lethargy, labored breathing); on hit, EITHER short-circuit the LLM call and return the plain vet-care line directly, OR pass red_flag=true into the user content so the prompt's care-path instruction activates. Do NOT rely on the model to notice keywords. [R8.2, R8.3] {depends: 6.1}
 - [~] 6.4 Display persistent care disclaimer on About page and on every behavior read output [R8.1] {depends: 6.2, 6.3}
 - [~] 6.5 Implement localStorage free-read counter (UX) + server-side per-IP rate limit enforcing daily allowance with paywall/upgrade prompt on exceed [R9.2, R9.3, R9.4] {depends: 6.2}
 
