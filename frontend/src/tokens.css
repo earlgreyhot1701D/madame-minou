@@ -5,23 +5,23 @@
    ══════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ── Color ─────────────────────────────────────────────────── */
-  --color-background: #0F1321;
-  --color-midnight-blue: #0A142F;
-  --color-surface: #0F1321;
-  --color-surface-bright: #353948;
-  --color-primary: #FFD273;
-  --color-primary-container: #EBB42B;
-  --color-on-primary: #402D00;
-  --color-starlight-gold: #FDF3A7;
-  --color-secondary: #B3C6FB;
-  --color-tertiary: #FFCDC0;
-  --color-cobblestone-gray: #3D4251;
-  --color-impasto-white: #F4F1EA;
-  --color-on-surface: #DFE1F6;
-  --color-on-surface-variant: #D3C5AE;
-  --color-outline: #9B8F7A;
-  --color-error: #FFB4AB;
+  /* ── Color (RGB channel triplets — Tailwind uses these with rgb() and <alpha-value>) ── */
+  --color-background: 15 19 33;
+  --color-midnight-blue: 10 20 47;
+  --color-surface: 15 19 33;
+  --color-surface-bright: 53 57 72;
+  --color-primary: 255 210 115;
+  --color-primary-container: 235 180 43;
+  --color-on-primary: 64 45 0;
+  --color-starlight-gold: 253 243 167;
+  --color-secondary: 179 198 251;
+  --color-tertiary: 255 205 192;
+  --color-cobblestone-gray: 61 66 81;
+  --color-impasto-white: 244 241 234;
+  --color-on-surface: 223 225 246;
+  --color-on-surface-variant: 211 197 174;
+  --color-outline: 155 143 122;
+  --color-error: 255 180 171;
 
   /* ── Shadows ───────────────────────────────────────────────── */
   --shadow-lamplight: rgba(235, 180, 43, 0.15);
