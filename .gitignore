@@ -21,8 +21,12 @@ lambda/server/
 
 # Node
 node_modules/
-dist/
 build/
+
+# Frontend dist: committed because static deploy serves it directly
+# (built by `npm run build:css` in frontend/)
+!frontend/dist/
+frontend/dist/*.map
 .next/
 .cache/
 npm-debug.log*
