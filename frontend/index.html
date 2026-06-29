@@ -1,104 +1,527 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Madame Minou — Deploy Spike</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Georgia', serif;
-      background: #1a1a2e;
-      color: #e0c097;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
-    }
-    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-    .subtitle { font-style: italic; margin-bottom: 2rem; opacity: 0.8; }
-    #result {
-      background: #16213e;
-      border: 1px solid #e0c097;
-      border-radius: 8px;
-      padding: 1.5rem;
-      max-width: 500px;
-      width: 100%;
-      min-height: 80px;
-      text-align: center;
-    }
-    #result.loading { opacity: 0.6; }
-    #result.error { border-color: #ff6b6b; color: #ff6b6b; }
-    button {
-      margin-top: 1.5rem;
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-      background: #e0c097;
-      color: #1a1a2e;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    button:hover { background: #f0d0a7; }
-    .status { margin-top: 1rem; font-size: 0.85rem; opacity: 0.6; }
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Madame Minou | Are cats even real?</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Manrope:wght@400;600;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+
+<!-- Inlined Tailwind CSS (compiled from dist/output.css for standalone preview) -->
+<style id="tailwind-output">
+:root{--color-background:15 19 33;--color-midnight-blue:10 20 47;--color-surface:15 19 33;--color-surface-bright:53 57 72;--color-primary:255 210 115;--color-primary-container:235 180 43;--color-on-primary:64 45 0;--color-starlight-gold:253 243 167;--color-secondary:179 198 251;--color-tertiary:255 205 192;--color-cobblestone-gray:61 66 81;--color-impasto-white:244 241 234;--color-on-surface:223 225 246;--color-on-surface-variant:211 197 174;--color-outline:155 143 122;--color-error:255 180 171;--shadow-lamplight:rgba(235,180,43,.15);--shadow-lamplight-strong:rgba(235,180,43,.3);--font-display:"Playfair Display",serif;--font-body:"Manrope",sans-serif;--font-size-display-lg:48px;--font-size-headline-lg:32px;--font-size-headline-mobile:28px;--font-size-body-lg:18px;--font-size-body-md:16px;--font-size-label-sm:12px;--space-unit:8px;--space-gutter:16px;--space-margin-mobile:24px;--space-margin-desktop:64px;--space-reading-width:600px;--radius-sm:4px;--radius-default:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:24px;--motion-reveal-duration:600ms;--motion-reveal-easing:cubic-bezier(0.16,1,0.3,1);--motion-float-duration:4s;--motion-hover-duration:200ms}@media (prefers-reduced-motion:reduce){:root{--motion-reveal-duration:0ms;--motion-float-duration:0ms}}*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }
+
+/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}input:where(:not([type])),input:where([type=date]),input:where([type=datetime-local]),input:where([type=email]),input:where([type=month]),input:where([type=number]),input:where([type=password]),input:where([type=search]),input:where([type=tel]),input:where([type=text]),input:where([type=time]),input:where([type=url]),input:where([type=week]),select,select:where([multiple]),textarea{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0;padding:.5rem .75rem;font-size:1rem;line-height:1.5rem;--tw-shadow:0 0 #0000}input:where(:not([type])):focus,input:where([type=date]):focus,input:where([type=datetime-local]):focus,input:where([type=email]):focus,input:where([type=month]):focus,input:where([type=number]):focus,input:where([type=password]):focus,input:where([type=search]):focus,input:where([type=tel]):focus,input:where([type=text]):focus,input:where([type=time]):focus,input:where([type=url]):focus,input:where([type=week]):focus,select:focus,select:where([multiple]):focus,textarea:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow);border-color:#2563eb}input::-moz-placeholder,textarea::-moz-placeholder{color:#6b7280;opacity:1}input::placeholder,textarea::placeholder{color:#6b7280;opacity:1}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-date-and-time-value{min-height:1.5em;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-meridiem-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-year-field{padding-top:0;padding-bottom:0}select{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");background-position:right .5rem center;background-repeat:no-repeat;background-size:1.5em 1.5em;padding-right:2.5rem;-webkit-print-color-adjust:exact;print-color-adjust:exact}select:where([multiple]),select:where([size]:not([size="1"])){background-image:none;background-position:0 0;background-repeat:unset;background-size:initial;padding-right:.75rem;-webkit-print-color-adjust:unset;print-color-adjust:unset}input:where([type=checkbox]),input:where([type=radio]){-webkit-appearance:none;-moz-appearance:none;appearance:none;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;display:inline-block;vertical-align:middle;background-origin:border-box;-webkit-user-select:none;-moz-user-select:none;user-select:none;flex-shrink:0;height:1rem;width:1rem;color:#2563eb;background-color:#fff;border-color:#6b7280;border-width:1px;--tw-shadow:0 0 #0000}input:where([type=checkbox]){border-radius:0}input:where([type=radio]){border-radius:100%}input:where([type=checkbox]):focus,input:where([type=radio]):focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:2px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}input:where([type=checkbox]):checked,input:where([type=radio]):checked{border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:50%;background-repeat:no-repeat}input:where([type=checkbox]):checked{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M12.207 4.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L6.5 9.086l4.293-4.293a1 1 0 0 1 1.414 0'/%3E%3C/svg%3E")}@media (forced-colors:active) {input:where([type=checkbox]):checked{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto}}input:where([type=radio]):checked{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E")}@media (forced-colors:active) {input:where([type=radio]):checked{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto}}input:where([type=checkbox]):checked:focus,input:where([type=checkbox]):checked:hover,input:where([type=radio]):checked:focus,input:where([type=radio]):checked:hover{border-color:transparent;background-color:currentColor}input:where([type=checkbox]):indeterminate{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3E%3C/svg%3E");border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:50%;background-repeat:no-repeat}@media (forced-colors:active) {input:where([type=checkbox]):indeterminate{-webkit-appearance:auto;-moz-appearance:auto;appearance:auto}}input:where([type=checkbox]):indeterminate:focus,input:where([type=checkbox]):indeterminate:hover{border-color:transparent;background-color:currentColor}input:where([type=file]){background:unset;border-color:inherit;border-width:0;border-radius:0;padding:0;font-size:unset;line-height:inherit}input:where([type=file]):focus{outline:1px solid ButtonText;outline:1px auto -webkit-focus-ring-color}body{font-family:var(--font-body);color:rgb(var(--color-on-surface));background-color:#080c1a;background-image:radial-gradient(at 0 0,rgba(10,20,47,.4) 0,transparent 50%),radial-gradient(at 50% 0,rgba(235,180,43,.05) 0,transparent 50%);overflow-x:hidden}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0}.-bottom-2{bottom:-.5rem}.-left-32{left:-8rem}.-right-32{right:-8rem}.-top-1{top:-.25rem}.bottom-0{bottom:0}.bottom-1\/4{bottom:25%}.left-0{left:0}.right-0{right:0}.top-0{top:0}.top-1\/4{top:25%}.z-0{z-index:0}.z-10{z-index:10}.z-20{z-index:20}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:.5rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.ml-1{margin-left:.25rem}.mt-16{margin-top:4rem}.mt-2{margin-top:.5rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.mt-\[-240px\]{margin-top:-240px}.mt-\[-80px\]{margin-top:-80px}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.hidden{display:none}.h-16{height:4rem}.h-4{height:1rem}.h-64{height:16rem}.h-96{height:24rem}.h-\[751px\]{height:751px}.h-full{height:100%}.h-px{height:1px}.min-h-screen{min-height:100vh}.w-4{width:1rem}.w-64{width:16rem}.w-8{width:2rem}.w-96{width:24rem}.w-full{width:100%}.max-w-\[800px\]{max-width:800px}.max-w-full{max-width:100%}.max-w-reading-width{max-width:var(--space-reading-width)}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.rotate-45{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-45{--tw-rotate:45deg}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-not-allowed{cursor:not-allowed}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.justify-around{justify-content:space-around}.gap-1{gap:.25rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:var(--radius-lg)}.rounded-xl{border-radius:var(--radius-xl)}.rounded-t-xl{border-top-left-radius:var(--radius-xl);border-top-right-radius:var(--radius-xl)}.rounded-bl-none{border-bottom-left-radius:0}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-l{border-left-width:1px}.border-l-2{border-left-width:2px}.border-t{border-top-width:1px}.border-outline\/20{border-color:rgb(var(--color-outline)/.2)}.border-outline\/30{border-color:rgb(var(--color-outline)/.3)}.border-primary\/10{border-color:rgb(var(--color-primary)/.1)}.border-primary\/20{border-color:rgb(var(--color-primary)/.2)}.border-primary\/30{border-color:rgb(var(--color-primary)/.3)}.border-starlight-gold\/20{border-color:rgb(var(--color-starlight-gold)/.2)}.bg-midnight-blue{--tw-bg-opacity:1;background-color:rgb(var(--color-midnight-blue)/var(--tw-bg-opacity,1))}.bg-midnight-blue\/80{background-color:rgb(var(--color-midnight-blue)/.8)}.bg-midnight-blue\/90{background-color:rgb(var(--color-midnight-blue)/.9)}.bg-on-surface-variant\/30{background-color:rgb(var(--color-on-surface-variant)/.3)}.bg-primary{--tw-bg-opacity:1;background-color:rgb(var(--color-primary)/var(--tw-bg-opacity,1))}.bg-primary\/10{background-color:rgb(var(--color-primary)/.1)}.bg-secondary\/10{background-color:rgb(var(--color-secondary)/.1)}.bg-surface-bright\/30{background-color:rgb(var(--color-surface-bright)/.3)}.bg-surface-bright\/40{background-color:rgb(var(--color-surface-bright)/.4)}.bg-surface\/80{background-color:rgb(var(--color-surface)/.8)}.bg-gradient-to-t{background-image:linear-gradient(to top,var(--tw-gradient-stops))}.from-background{--tw-gradient-from:rgb(var(--color-background)/1) var(--tw-gradient-from-position);--tw-gradient-to:rgb(var(--color-background)/0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.via-transparent{--tw-gradient-to:transparent var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),transparent var(--tw-gradient-via-position),var(--tw-gradient-to)}.to-transparent{--tw-gradient-to:transparent var(--tw-gradient-to-position)}.bg-cover{background-size:cover}.bg-center{background-position:50%}.p-4{padding:1rem}.p-8{padding:2rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-7{padding-left:1.75rem;padding-right:1.75rem}.px-8{padding-left:2rem;padding-right:2rem}.px-gutter{padding-left:var(--space-gutter);padding-right:var(--space-gutter)}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-32{padding-bottom:8rem}.pl-6{padding-left:1.5rem}.pt-16{padding-top:4rem}.pt-6{padding-top:1.5rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.align-middle{vertical-align:middle}.font-body{font-family:Manrope,sans-serif}.font-display{font-family:Playfair Display,serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[64px\]{font-size:64px}.text-\[8px\]{font-size:8px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.tracking-tight{letter-spacing:-.025em}.tracking-tighter{letter-spacing:-.05em}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.text-impasto-white{--tw-text-opacity:1;color:rgb(var(--color-impasto-white)/var(--tw-text-opacity,1))}.text-on-primary{--tw-text-opacity:1;color:rgb(var(--color-on-primary)/var(--tw-text-opacity,1))}.text-on-surface{--tw-text-opacity:1;color:rgb(var(--color-on-surface)/var(--tw-text-opacity,1))}.text-on-surface-variant{--tw-text-opacity:1;color:rgb(var(--color-on-surface-variant)/var(--tw-text-opacity,1))}.text-on-surface-variant\/30{color:rgb(var(--color-on-surface-variant)/.3)}.text-on-surface-variant\/70{color:rgb(var(--color-on-surface-variant)/.7)}.text-on-surface\/90{color:rgb(var(--color-on-surface)/.9)}.text-primary{--tw-text-opacity:1;color:rgb(var(--color-primary)/var(--tw-text-opacity,1))}.text-primary\/40{color:rgb(var(--color-primary)/.4)}.text-secondary{--tw-text-opacity:1;color:rgb(var(--color-secondary)/var(--tw-text-opacity,1))}.text-starlight-gold{--tw-text-opacity:1;color:rgb(var(--color-starlight-gold)/var(--tw-text-opacity,1))}.underline{text-decoration-line:underline}.underline-offset-4{text-underline-offset:4px}.opacity-30{opacity:.3}.opacity-60{opacity:.6}.opacity-90{opacity:.9}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-2xl,.shadow-\[0_-4px_20px_rgba\(235\2c 180\2c 43\2c 0\.1\)\]{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-\[0_-4px_20px_rgba\(235\2c 180\2c 43\2c 0\.1\)\]{--tw-shadow:0 -4px 20px rgba(235,180,43,.1);--tw-shadow-colored:0 -4px 20px var(--tw-shadow-color)}.shadow-\[0_0_40px_rgba\(235\2c 180\2c 43\2c 0\.3\)\]{--tw-shadow:0 0 40px rgba(235,180,43,.3);--tw-shadow-colored:0 0 40px var(--tw-shadow-color)}.shadow-\[0_0_40px_rgba\(235\2c 180\2c 43\2c 0\.3\)\],.shadow-sm{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color)}.outline{outline-style:solid}.blur-\[100px\]{--tw-blur:blur(100px)}.blur-\[100px\],.blur-\[150px\]{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.blur-\[150px\]{--tw-blur:blur(150px)}.backdrop-blur-lg{--tw-backdrop-blur:blur(16px)}.backdrop-blur-lg,.backdrop-blur-md{backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px)}.backdrop-blur-xl{--tw-backdrop-blur:blur(24px);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.impasto-texture{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence baseFrequency='.65' numOctaves='3' stitchTiles='stitch' type='fractalNoise'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");opacity:.03;pointer-events:none}@keyframes fadeFloat{0%,to{transform:translateY(0);opacity:.92}50%{transform:translateY(-8px);opacity:1}}.fade-float{animation:fadeFloat var(--motion-float-duration) ease-in-out infinite}@keyframes revealCard{0%{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}.reveal-card{animation:revealCard var(--motion-reveal-duration) var(--motion-reveal-easing) forwards}@keyframes anticipationPulse{0%,to{opacity:.7}50%{opacity:1}}.anticipation-pulse{animation:anticipationPulse 2s ease-in-out infinite}.painterly-border{border-bottom:3px solid rgb(var(--color-primary-container))}:focus-visible{outline:2px solid rgb(var(--color-primary));outline-offset:2px}@media (prefers-reduced-motion:reduce){.anticipation-pulse,.fade-float,.reveal-card{animation:none!important}.reveal-card{opacity:1;transform:none}}.selection\:bg-primary ::-moz-selection{--tw-bg-opacity:1;background-color:rgb(var(--color-primary)/var(--tw-bg-opacity,1))}.selection\:bg-primary ::selection{--tw-bg-opacity:1;background-color:rgb(var(--color-primary)/var(--tw-bg-opacity,1))}.selection\:text-on-primary ::-moz-selection{--tw-text-opacity:1;color:rgb(var(--color-on-primary)/var(--tw-text-opacity,1))}.selection\:text-on-primary ::selection{--tw-text-opacity:1;color:rgb(var(--color-on-primary)/var(--tw-text-opacity,1))}.selection\:bg-primary::-moz-selection{--tw-bg-opacity:1;background-color:rgb(var(--color-primary)/var(--tw-bg-opacity,1))}.selection\:bg-primary::selection{--tw-bg-opacity:1;background-color:rgb(var(--color-primary)/var(--tw-bg-opacity,1))}.selection\:text-on-primary::-moz-selection{--tw-text-opacity:1;color:rgb(var(--color-on-primary)/var(--tw-text-opacity,1))}.selection\:text-on-primary::selection{--tw-text-opacity:1;color:rgb(var(--color-on-primary)/var(--tw-text-opacity,1))}.placeholder\:text-on-surface-variant\/50::-moz-placeholder{color:rgb(var(--color-on-surface-variant)/.5)}.placeholder\:text-on-surface-variant\/50::placeholder{color:rgb(var(--color-on-surface-variant)/.5)}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:text-primary:hover{--tw-text-opacity:1;color:rgb(var(--color-primary)/var(--tw-text-opacity,1))}.hover\:text-primary\/80:hover{color:rgb(var(--color-primary)/.8)}.hover\:text-starlight-gold:hover{--tw-text-opacity:1;color:rgb(var(--color-starlight-gold)/var(--tw-text-opacity,1))}.focus\:border-primary:focus{--tw-border-opacity:1;border-color:rgb(var(--color-primary)/var(--tw-border-opacity,1))}.focus\:shadow-lamplight:focus{--tw-shadow:0 0 32px rgba(235,180,43,.15);--tw-shadow-colored:0 0 32px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.focus\:ring-0:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95}.active\:scale-95:active,.group:hover .group-hover\:translate-x-1{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:translate-x-1{--tw-translate-x:0.25rem}.group:hover .group-hover\:bg-primary\/50{background-color:rgb(var(--color-primary)/.5)}.group:hover .group-hover\:opacity-100{opacity:1}@media (min-width:768px){.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-\[88px\]{font-size:88px}}
+</style>
+
+<!-- Additional custom styles -->
+<style>
+body { min-height: max(884px, 100dvh); }
+</style>
 </head>
-<body>
-  <h1>Madame Minou</h1>
-  <p class="subtitle">Deploy Spike — Block 0</p>
+<body class="font-body text-on-surface selection:bg-primary selection:text-on-primary min-h-screen">
+<div class="fixed inset-0 impasto-texture z-0"></div>
 
-  <div id="result">Waiting for Madame...</div>
 
-  <button id="callBtn" onclick="callLambda()">Call the Lambda</button>
+<!-- Navigation Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-surface/80 backdrop-blur-md border-b border-primary/20 shadow-sm">
+  <div class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">menu</span>
+    <h1 class="font-display text-2xl text-primary tracking-tight">Madame Minou</h1>
+  </div>
+  <div class="flex items-center gap-4">
+    <span class="material-symbols-outlined text-primary hover:text-starlight-gold transition-colors" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+  </div>
+</header>
 
-  <p class="status">
-    API endpoint: <code id="apiUrl">not configured</code>
-  </p>
+<main class="relative z-10 pt-16 pb-32 overflow-hidden">
 
-  <script>
-    // ─── Configuration ───────────────────────────────────────────────────
-    // After deploying with SAM, replace this with the actual API Gateway URL
-    // from the stack outputs (ApiUrl).
-    const API_BASE = window.__MINOU_API_URL__ || '';
 
-    const resultEl = document.getElementById('result');
-    const apiUrlEl = document.getElementById('apiUrl');
+<!-- ═══ SCREEN: LANDING ═══════════════════════════════════════════════════ -->
+<div id="screen-landing">
 
-    if (API_BASE) {
-      apiUrlEl.textContent = API_BASE + '/hello';
+<!-- Hero Section -->
+<section class="relative w-full h-[751px] flex flex-col items-center justify-center text-center px-gutter">
+  <!-- Full-bleed background art -->
+  <div class="absolute inset-0 z-0">
+    <div class="w-full h-full bg-cover bg-center opacity-60" role="img" aria-label="A tuxedo cat sitting at a candlelit cafe table at night, wearing a small, stylish red beret. Painterly and impressionistic style." style="background-image: url('../assets/hero.png');"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+  </div>
+  <!-- Hero Content -->
+  <div class="relative z-10 max-w-[800px] mt-[-240px]">
+    <h2 class="font-display text-[64px] md:text-[88px] text-starlight-gold mb-4 leading-none tracking-tighter fade-float">Madame Minou</h2>
+    <p class="font-body text-secondary italic mb-12 text-xl md:text-2xl opacity-90">"Are cats even real?"</p>
+  </div>
+</section>
+
+
+<!-- Sample Reading & CTA Section -->
+<section class="max-w-reading-width mx-auto px-gutter mt-[-80px] relative z-20">
+
+<!-- Speech Bubble + CTA -->
+<div class="mb-16 flex justify-center">
+  <div class="flex flex-col items-center gap-8 w-full">
+    <div class="bg-midnight-blue/80 backdrop-blur-lg border border-starlight-gold/20 p-8 rounded-2xl rounded-bl-none shadow-2xl relative max-w-full fade-float">
+      <p class="text-impasto-white font-display italic text-2xl md:text-3xl leading-relaxed text-center">"Welcome, traveler. My whiskers sense a question about the unknown. Shall we peek through the veil?"</p>
+      <div class="absolute -bottom-2 left-0 w-4 h-4 bg-midnight-blue border-l border-b border-starlight-gold/20 transform rotate-45 -translate-x-1/2"></div>
+    </div>
+    <button id="cta-consult" class="bg-primary text-on-primary font-bold px-8 py-4 rounded-xl text-sm uppercase tracking-widest painterly-border transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(235,180,43,0.3)] group flex items-center gap-3" aria-label="Begin consultation with Madame Minou">
+      Consult Madame Minou
+      <span class="material-symbols-outlined align-middle group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+    </button>
+  </div>
+</div>
+
+
+<!-- Demo Reading Card -->
+<div class="bg-midnight-blue/80 backdrop-blur-xl border border-starlight-gold/20 rounded-xl p-8 shadow-2xl relative overflow-hidden group">
+  <div class="absolute top-0 right-0 p-4 opacity-30 group-hover:opacity-100 transition-opacity">
+    <span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+  </div>
+  <h3 class="font-display text-primary mb-2 text-2xl">A Sample Whisper</h3>
+  <p class="text-on-surface-variant text-xs font-bold mb-6 uppercase tracking-widest">Date: L'heure Bleue</p>
+  <div class="space-y-4 text-on-surface/90 font-body leading-relaxed border-l-2 border-primary/30 pl-6 italic">
+    "The tuxedo moon rises over the 7th Arrondissement. Your feline companion isn't just staring at the wall-they are monitoring the subtle frequency shifts of the multiverse. Today, trust the quiet paws over the loud voices."
+  </div>
+  <div class="mt-8 flex items-center justify-between border-t border-primary/10 pt-6">
+    <div class="flex items-center gap-2 text-primary/40">
+      <span class="material-symbols-outlined text-sm">volume_up</span>
+      <span class="text-xs font-bold uppercase tracking-widest">Hear Madame Minou</span>
+    </div>
+    <button class="text-secondary text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-1">
+      Share <span class="material-symbols-outlined text-sm">ios_share</span>
+    </button>
+  </div>
+</div>
+
+<!-- About Link -->
+<div class="mt-16 text-center">
+  <a class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-xs font-bold uppercase tracking-widest group" href="#">
+    <span class="w-8 h-px bg-on-surface-variant/30 group-hover:bg-primary/50 transition-colors"></span>
+    ABOUT THE ORACLE
+    <span class="w-8 h-px bg-on-surface-variant/30 group-hover:bg-primary/50 transition-colors"></span>
+  </a>
+</div>
+
+</section>
+</div><!-- /screen-landing -->
+
+
+<!-- ═══ SCREEN: INTAKE ════════════════════════════════════════════════════ -->
+<div id="screen-intake" class="hidden">
+<section class="max-w-reading-width mx-auto px-gutter pt-8">
+
+  <!-- Step 1: Cat Name -->
+  <div id="step-name">
+    <div class="bg-midnight-blue/80 backdrop-blur-xl border border-starlight-gold/20 rounded-xl p-8 shadow-2xl">
+      <h2 class="font-display text-primary text-2xl mb-2">Who shall we consult the stars for?</h2>
+      <p class="text-on-surface-variant mb-6 text-sm">Enter your cat's name below.</p>
+      <form id="form-name" class="flex flex-col gap-3">
+        <input id="input-cat-name" type="text" maxlength="40" required
+          class="w-full bg-surface-bright/30 border border-outline/30 rounded-lg px-3 py-3 text-on-surface font-body placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-0 focus:shadow-lamplight"
+          placeholder="e.g. Monsieur Whiskers" aria-label="Cat name"/>
+        <button type="submit" class="bg-primary text-on-primary font-bold px-7 py-3 rounded-lg text-sm uppercase tracking-wider painterly-border transition-all hover:scale-105 active:scale-95 mt-2">
+          Next <span class="material-symbols-outlined align-middle ml-1 text-sm">arrow_forward</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Step 2: Birth Date -->
+  <div id="step-date" class="hidden">
+    <div class="bg-midnight-blue/80 backdrop-blur-xl border border-starlight-gold/20 rounded-xl p-8 shadow-2xl">
+      <h2 class="font-display text-primary text-2xl mb-2">When was <span id="date-cat-name-display">your cat</span> born?</h2>
+      <p class="text-on-surface-variant mb-6 text-sm">A birth date helps Madame compute the sun sign. No date? That's fine too.</p>
+      <form id="form-date" class="flex flex-col gap-3">
+        <input id="input-birth-date" type="date"
+          class="w-full bg-surface-bright/30 border border-outline/30 rounded-lg px-3 py-3 text-on-surface font-body focus:border-primary focus:ring-0 focus:shadow-lamplight"
+          aria-label="Cat birth date"/>
+        <button type="submit" class="bg-primary text-on-primary font-bold px-7 py-3 rounded-lg text-sm uppercase tracking-wider painterly-border transition-all hover:scale-105 active:scale-95 mt-2">
+          Consult the Stars <span class="material-symbols-outlined align-middle ml-1 text-sm">auto_awesome</span>
+        </button>
+      </form>
+      <button id="btn-mystery" type="button" class="mt-4 w-full text-center text-on-surface-variant/70 text-sm italic underline underline-offset-4 hover:text-primary transition-colors">
+        "She's a mystery to me too"
+      </button>
+    </div>
+  </div>
+
+</section>
+</div><!-- /screen-intake -->
+
+
+<!-- ═══ SCREEN: REVEAL (anticipation) ═════════════════════════════════════ -->
+<div id="screen-reveal" class="hidden">
+<section class="max-w-reading-width mx-auto px-gutter pt-8 text-center">
+  <div class="bg-midnight-blue/80 backdrop-blur-xl border border-starlight-gold/20 rounded-xl p-8 shadow-2xl">
+    <div class="mb-6">
+      <span class="material-symbols-outlined text-primary text-5xl anticipation-pulse" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+    </div>
+    <p id="reveal-text" class="text-impasto-white font-display italic text-lg leading-relaxed">"Hmm... the stars are aligning... one moment, cherie..."</p>
+  </div>
+</section>
+</div><!-- /screen-reveal -->
+
+<!-- ═══ SCREEN: READING (result card) ═════════════════════════════════════ -->
+<div id="screen-reading" class="hidden">
+<section class="max-w-reading-width mx-auto px-gutter pt-8">
+  <div id="reading-card" class="bg-midnight-blue/80 backdrop-blur-xl border border-starlight-gold/20 rounded-xl p-8 shadow-2xl relative overflow-hidden group">
+    <div class="absolute top-0 right-0 p-4 opacity-30 group-hover:opacity-100 transition-opacity">
+      <span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+    </div>
+    <h3 id="card-title" class="font-display text-primary text-2xl mb-2"></h3>
+    <p id="card-tier" class="text-on-surface-variant text-xs font-bold mb-6 uppercase tracking-widest"></p>
+    <div class="border-l-2 border-primary/30 pl-6">
+      <p id="card-reading" class="text-on-surface/90 font-body leading-relaxed italic"></p>
+    </div>
+
+
+    <!-- Fact pills -->
+    <div id="card-facts" class="mt-6 flex flex-wrap gap-2 text-xs text-on-surface-variant"></div>
+
+    <!-- Card footer: share + download -->
+    <div class="mt-8 flex items-center justify-between border-t border-primary/10 pt-6">
+      <button id="btn-share" class="text-secondary text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-1" aria-label="Share this reading">
+        Share <span class="material-symbols-outlined text-sm">ios_share</span>
+      </button>
+      <button id="btn-download" class="text-on-surface-variant/70 text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-1" aria-label="Download this reading">
+        Save <span class="material-symbols-outlined text-sm">download</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Go Deeper (optional birth time/city) -->
+  <div id="go-deeper" class="hidden mt-6 bg-midnight-blue/80 backdrop-blur-xl border border-starlight-gold/20 rounded-xl p-8 shadow-2xl">
+    <p id="deeper-prompt" class="text-impasto-white font-display italic text-lg mb-5 leading-relaxed"></p>
+    <form id="form-deeper" class="flex flex-col gap-3">
+      <input id="input-birth-time" type="time"
+        class="w-full bg-surface-bright/30 border border-outline/30 rounded-lg px-3 py-3 text-on-surface font-body focus:border-primary focus:ring-0 focus:shadow-lamplight"
+        aria-label="Birth time (optional)"/>
+      <input id="input-birth-city" type="text" maxlength="60"
+        class="w-full bg-surface-bright/30 border border-outline/30 rounded-lg px-3 py-3 text-on-surface font-body placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-0 focus:shadow-lamplight"
+        placeholder="Birth city (optional)" aria-label="Birth city (optional)"/>
+      <button type="submit" class="bg-primary text-on-primary font-bold px-7 py-3 rounded-lg text-sm uppercase tracking-wider painterly-border transition-all hover:scale-105 active:scale-95 mt-2">
+        Go Deeper <span class="material-symbols-outlined align-middle ml-1 text-sm">explore</span>
+      </button>
+    </form>
+  </div>
+</section>
+</div><!-- /screen-reading -->
+
+
+<!-- Visual Flairs -->
+<div class="absolute top-1/4 -left-32 w-64 h-64 bg-primary/10 blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/10 blur-[150px] pointer-events-none"></div>
+
+</main>
+
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-midnight-blue/90 backdrop-blur-lg border-t border-starlight-gold/20 shadow-[0_-4px_20px_rgba(235,180,43,0.1)] rounded-t-xl" aria-label="Main navigation">
+  <a id="nav-consult" class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+    <span class="text-xs font-bold uppercase tracking-widest">Consult</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary/80 transition-all" href="#">
+    <span class="material-symbols-outlined">menu_book</span>
+    <span class="text-xs font-bold uppercase tracking-widest">Log</span>
+  </a>
+  <span class="flex flex-col items-center justify-center text-on-surface-variant/30 cursor-not-allowed relative" aria-disabled="true">
+    <span class="material-symbols-outlined">history_edu</span>
+    <span class="text-xs font-bold uppercase tracking-widest">History</span>
+    <span class="absolute -top-1 right-0 text-[8px] bg-surface-bright/40 border border-outline/20 rounded-full px-1 py-0.5 text-on-surface-variant/70">soon</span>
+  </span>
+  <a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary/80 transition-all" href="#">
+    <span class="material-symbols-outlined">pets</span>
+    <span class="text-xs font-bold uppercase tracking-widest">About</span>
+  </a>
+</nav>
+
+
+<!-- ═══ APPLICATION LOGIC ═════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  // ── DOM References ─────────────────────────────────────────────────────
+  var els = {
+    screenLanding: document.getElementById('screen-landing'),
+    screenIntake:  document.getElementById('screen-intake'),
+    screenReveal:  document.getElementById('screen-reveal'),
+    screenReading: document.getElementById('screen-reading'),
+    ctaConsult:    document.getElementById('cta-consult'),
+    stepName:      document.getElementById('step-name'),
+    stepDate:      document.getElementById('step-date'),
+    formName:      document.getElementById('form-name'),
+    formDate:      document.getElementById('form-date'),
+    inputCatName:  document.getElementById('input-cat-name'),
+    inputBirthDate:document.getElementById('input-birth-date'),
+    dateCatNameDisplay: document.getElementById('date-cat-name-display'),
+    btnMystery:    document.getElementById('btn-mystery'),
+    revealText:    document.getElementById('reveal-text'),
+    readingCard:   document.getElementById('reading-card'),
+    cardTitle:     document.getElementById('card-title'),
+    cardTier:      document.getElementById('card-tier'),
+    cardReading:   document.getElementById('card-reading'),
+    cardFacts:     document.getElementById('card-facts'),
+    goDeeper:      document.getElementById('go-deeper'),
+    deeperPrompt:  document.getElementById('deeper-prompt'),
+    formDeeper:    document.getElementById('form-deeper'),
+    inputBirthTime:document.getElementById('input-birth-time'),
+    inputBirthCity:document.getElementById('input-birth-city'),
+    btnShare:      document.getElementById('btn-share'),
+    btnDownload:   document.getElementById('btn-download'),
+  };
+
+
+  // ── State ────────────────────────────────────────────────────────────────
+  var state = {
+    catName: '',
+    birthDate: '',
+    birthTime: '',
+    birthCity: '',
+    isEstimated: false,
+    hasFirstReading: false,
+  };
+
+  // ── Screen Management ────────────────────────────────────────────────────
+  var screens = ['landing', 'intake', 'reveal', 'reading'];
+  function showScreen(name) {
+    screens.forEach(function (s) {
+      var el = document.getElementById('screen-' + s);
+      if (el) el.classList.toggle('hidden', s !== name);
+    });
+  }
+
+  // ── Build facts object for API ───────────────────────────────────────────
+  function buildFacts() {
+    return {
+      cat_name: state.catName,
+      birth_date: state.birthDate || null,
+      birth_time: state.birthTime || null,
+      birth_city: state.birthCity || null,
+      is_estimated: state.isEstimated,
+      chart_tier: state.birthTime ? 'full' : (state.birthDate ? 'partial' : 'sun_only'),
+    };
+  }
+
+  // ── API Call (mock mode for standalone preview) ──────────────────────────
+  var API_BASE = window.__MINOU_API_URL__ || '';
+
+  async function fetchReading(facts) {
+    if (!API_BASE) {
+      // Mock mode: return a canned reading after simulated delay
+      await new Promise(function (r) { setTimeout(r, 800); });
+      return {
+        reading: "The celestial curtains part for " + (facts.cat_name || "your mysterious feline") +
+          ". Under the " + (facts.sun || "cosmic") + " sun, I see whisker-twitches of destiny. " +
+          "Your companion gazes beyond the veil tonight, sensing shifts in the astral frequencies " +
+          "that mere humans cannot perceive. Trust the midnight zoomies, they are rehearsals for interdimensional travel.",
+        facts: {
+          sun: facts.birth_date ? 'Leo' : null,
+          moon: facts.birth_date ? 'Pisces' : null,
+          rising: facts.birth_time ? 'Scorpio' : null,
+          notable_transit: 'Venus conjunct Neptune',
+          chart_tier: facts.chart_tier,
+          cat_name: facts.cat_name,
+          tz_assumption: facts.birth_city ? null : 'UTC assumed',
+        },
+        title: "A Whisper for " + (facts.cat_name || "Your Cat"),
+      };
+    }
+
+
+    // Real API call
+    var res = await fetch(API_BASE + '/reading', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(facts),
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.json();
+  }
+
+  // ── Render Card ──────────────────────────────────────────────────────────
+  var tierLabels = { sun_only: 'Sun Only', partial: 'Partial Chart', full: 'Full Chart' };
+
+  function renderCard(data) {
+    var facts = data.facts || {};
+    var readingText = data.reading || '';
+
+    // Title
+    els.cardTitle.textContent = data.title || ("A Whisper for " + (facts.cat_name || "Your Cat"));
+
+    // Tier line
+    var tierParts = [];
+    if (facts.sun) tierParts.push(facts.sun + ' Sun');
+    if (facts.moon) tierParts.push(facts.moon + ' Moon');
+    if (facts.rising) tierParts.push(facts.rising + ' Rising');
+    var tierText = tierParts.join(' \u2022 ');
+    if (tierLabels[facts.chart_tier]) {
+      tierText = (tierText ? tierText + ' \u2022 ' : '') + tierLabels[facts.chart_tier];
+    }
+    els.cardTier.textContent = tierText;
+
+    // Reading text
+    els.cardReading.textContent = readingText;
+
+    // Facts summary pills
+    els.cardFacts.innerHTML = '';
+    var factItems = [];
+    if (facts.sun) factItems.push('\u2609 ' + facts.sun);
+    if (facts.moon) factItems.push('\u263D ' + facts.moon);
+    if (facts.rising) factItems.push('\u2191 ' + facts.rising);
+    if (facts.notable_transit) factItems.push('\u2721 ' + facts.notable_transit);
+    if (facts.tz_assumption) factItems.push('\u23F0 ' + facts.tz_assumption);
+
+    factItems.forEach(function (text) {
+      var pill = document.createElement('span');
+      pill.className = 'inline-block bg-surface-bright/40 border border-outline/20 rounded-full px-3 py-1';
+      pill.textContent = text;
+      els.cardFacts.appendChild(pill);
+    });
+
+    // Update go-deeper prompt
+    var deeperText = '\u201CMadame Minou can see more\u2026 would you share ' +
+      (facts.cat_name || 'your cat') + '\u2019s birth time and city?\u201D';
+    els.deeperPrompt.textContent = deeperText;
+  }
+
+
+  // ── Show Error State (in-voice) ──────────────────────────────────────────
+  function showError() {
+    els.cardTitle.textContent = 'Oh non\u2026';
+    els.cardTier.textContent = '';
+    els.cardReading.textContent =
+      'Madame Minou\u2019s crystal ball is cloudy tonight. ' +
+      'The stars are shy\u2014please try again in a moment, ch\u00E9rie.';
+    els.cardFacts.innerHTML = '';
+    showScreen('reading');
+  }
+
+  // ── Reveal Sequence ──────────────────────────────────────────────────────
+  async function doReveal(facts) {
+    els.revealText.textContent = '\u201CHmm\u2026 the stars are aligning for ' +
+      (facts.cat_name || 'your cat') + '\u2026 one moment, ch\u00E9rie\u2026\u201D';
+
+    showScreen('reveal');
+
+    var minWait = new Promise(function (r) { setTimeout(r, 1200); });
+
+    try {
+      var results = await Promise.all([fetchReading(facts), minWait]);
+      var data = results[0];
+
+      els.readingCard.classList.remove('reveal-card');
+      void els.readingCard.offsetWidth;
+
+      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reducedMotion) {
+        els.readingCard.classList.add('reveal-card');
+      }
+
+      renderCard(data);
+      showScreen('reading');
+
+      if (!state.hasFirstReading) {
+        state.hasFirstReading = true;
+        setTimeout(function () {
+          els.goDeeper.classList.remove('hidden');
+        }, 800);
+      }
+    } catch (err) {
+      console.error('Reading failed:', err);
+      showError();
+    }
+  }
+
+
+  // ── Event Handlers ────────────────────────────────────────────────────────
+
+  // CTA: Start consultation
+  els.ctaConsult.addEventListener('click', function () {
+    showScreen('intake');
+    els.stepName.classList.remove('hidden');
+    els.stepDate.classList.add('hidden');
+    els.inputCatName.focus();
+  });
+
+  // Name form submit
+  els.formName.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = els.inputCatName.value.trim();
+    if (!name) return;
+
+    state.catName = name;
+    els.dateCatNameDisplay.textContent = name;
+    els.stepName.classList.add('hidden');
+    els.stepDate.classList.remove('hidden');
+    els.inputBirthDate.focus();
+  });
+
+  // Date form submit
+  els.formDate.addEventListener('submit', function (e) {
+    e.preventDefault();
+    state.birthDate = els.inputBirthDate.value || '';
+    state.isEstimated = !state.birthDate;
+
+    var facts = buildFacts();
+    doReveal(facts);
+  });
+
+  // Mystery button
+  els.btnMystery.addEventListener('click', function () {
+    state.birthDate = '';
+    state.isEstimated = true;
+
+    var facts = buildFacts();
+    doReveal(facts);
+  });
+
+  // Go deeper form submit
+  els.formDeeper.addEventListener('submit', function (e) {
+    e.preventDefault();
+    state.birthTime = els.inputBirthTime.value || '';
+    state.birthCity = els.inputBirthCity.value.trim() || '';
+
+    els.goDeeper.classList.add('hidden');
+    var facts = buildFacts();
+    doReveal(facts);
+  });
+
+  // Share button (Web Share API with fallback)
+  els.btnShare.addEventListener('click', function () {
+    var text = els.cardReading.textContent;
+    var title = els.cardTitle.textContent;
+
+    if (navigator.share) {
+      navigator.share({ title: title, text: text }).catch(function () {});
     } else {
-      apiUrlEl.textContent = '(set window.__MINOU_API_URL__ or update API_BASE after deploy)';
+      navigator.clipboard.writeText(title + '\n\n' + text).then(function () {
+        alert('Reading copied to clipboard!');
+      });
     }
+  });
 
-    async function callLambda() {
-      if (!API_BASE) {
-        resultEl.className = 'error';
-        resultEl.textContent = 'API_BASE not set. Deploy first, then update the URL.';
-        return;
-      }
+  // Download button
+  els.btnDownload.addEventListener('click', function () {
+    var text = els.cardTitle.textContent + '\n\n' + els.cardReading.textContent;
+    var blob = new Blob([text], { type: 'text/plain' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'madame-minou-reading.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
 
-      resultEl.className = 'loading';
-      resultEl.textContent = 'Consulting the stars...';
+  // Nav: Consult link resets to landing
+  document.getElementById('nav-consult').addEventListener('click', function (e) {
+    e.preventDefault();
+    showScreen('landing');
+  });
 
-      try {
-        const res = await fetch(API_BASE + '/hello', {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-        });
-
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-        const data = await res.json();
-        resultEl.className = '';
-        resultEl.textContent = data.message || JSON.stringify(data);
-      } catch (err) {
-        resultEl.className = 'error';
-        resultEl.textContent = `Error: ${err.message}`;
-      }
-    }
-  </script>
+})();
+</script>
 </body>
 </html>
