@@ -1,0 +1,66 @@
+/* ══════════════════════════════════════════════════════════════
+   L'Astre de Minou — Design Tokens
+   Source of truth: .kiro/specs/madame-minou/design-system.md
+   NEVER hardcode a hex, px, or duration in a component.
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Color ─────────────────────────────────────────────────── */
+  --color-background: #0F1321;
+  --color-midnight-blue: #0A142F;
+  --color-surface: #0F1321;
+  --color-surface-bright: #353948;
+  --color-primary: #FFD273;
+  --color-primary-container: #EBB42B;
+  --color-on-primary: #402D00;
+  --color-starlight-gold: #FDF3A7;
+  --color-secondary: #B3C6FB;
+  --color-tertiary: #FFCDC0;
+  --color-cobblestone-gray: #3D4251;
+  --color-impasto-white: #F4F1EA;
+  --color-on-surface: #DFE1F6;
+  --color-on-surface-variant: #D3C5AE;
+  --color-outline: #9B8F7A;
+  --color-error: #FFB4AB;
+
+  /* ── Shadows ───────────────────────────────────────────────── */
+  --shadow-lamplight: rgba(235, 180, 43, 0.15);
+  --shadow-lamplight-strong: rgba(235, 180, 43, 0.3);
+
+  /* ── Typography ────────────────────────────────────────────── */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-size-display-lg: 48px;
+  --font-size-headline-lg: 32px;
+  --font-size-headline-mobile: 28px;
+  --font-size-body-lg: 18px;
+  --font-size-body-md: 16px;
+  --font-size-label-sm: 12px;
+
+  /* ── Spacing ───────────────────────────────────────────────── */
+  --space-unit: 8px;
+  --space-gutter: 16px;
+  --space-margin-mobile: 24px;
+  --space-margin-desktop: 64px;
+  --space-reading-width: 600px;
+
+  /* ── Radius ────────────────────────────────────────────────── */
+  --radius-sm: 4px;
+  --radius-default: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* ── Motion ────────────────────────────────────────────────── */
+  --motion-reveal-duration: 600ms;
+  --motion-reveal-easing: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-float-duration: 4s;
+  --motion-hover-duration: 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-reveal-duration: 0ms;
+    --motion-float-duration: 0ms;
+  }
+}

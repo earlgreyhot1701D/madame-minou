@@ -1,104 +1,265 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Madame Minou — Deploy Spike</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Georgia', serif;
-      background: #1a1a2e;
-      color: #e0c097;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
-    }
-    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-    .subtitle { font-style: italic; margin-bottom: 2rem; opacity: 0.8; }
-    #result {
-      background: #16213e;
-      border: 1px solid #e0c097;
-      border-radius: 8px;
-      padding: 1.5rem;
-      max-width: 500px;
-      width: 100%;
-      min-height: 80px;
-      text-align: center;
-    }
-    #result.loading { opacity: 0.6; }
-    #result.error { border-color: #ff6b6b; color: #ff6b6b; }
-    button {
-      margin-top: 1.5rem;
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-      background: #e0c097;
-      color: #1a1a2e;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    button:hover { background: #f0d0a7; }
-    .status { margin-top: 1rem; font-size: 0.85rem; opacity: 0.6; }
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Madame Minou | Are cats even real?</title>
+
+<!-- Built Tailwind CSS (real build, not CDN) -->
+<link href="dist/output.css" rel="stylesheet"/>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 </head>
-<body>
-  <h1>Madame Minou</h1>
-  <p class="subtitle">Deploy Spike — Block 0</p>
 
-  <div id="result">Waiting for Madame...</div>
+<body class="font-body text-on-surface min-h-screen selection:bg-primary selection:text-on-primary">
+<!-- Impasto texture overlay -->
+<div class="fixed inset-0 impasto-texture z-0"></div>
 
-  <button id="callBtn" onclick="callLambda()">Call the Lambda</button>
+<!-- ═══════════════════════════════════════════════════════════════
+     Top Header Bar
+     ═══════════════════════════════════════════════════════════════ -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-surface/80 backdrop-blur-md border-b border-primary/20">
+  <div class="flex items-center gap-2">
+    <button aria-label="Open menu" class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">menu</button>
+    <h1 class="font-display text-2xl text-primary tracking-tight">Madame Minou</h1>
+  </div>
+  <button aria-label="Settings" class="material-symbols-outlined text-primary hover:text-starlight-gold transition-colors" style="font-variation-settings:'FILL' 1;">auto_awesome</button>
+</header>
 
-  <p class="status">
-    API endpoint: <code id="apiUrl">not configured</code>
-  </p>
+<main class="relative z-10 pt-16 pb-32">
 
-  <script>
-    // ─── Configuration ───────────────────────────────────────────────────
-    // After deploying with SAM, replace this with the actual API Gateway URL
-    // from the stack outputs (ApiUrl).
-    const API_BASE = window.__MINOU_API_URL__ || '';
+  <!-- ═══════════════════════════════════════════════════════════════
+       SCREEN: LANDING (visible by default)
+       [R1.1, R5.1]
+       ═══════════════════════════════════════════════════════════════ -->
+  <section id="screen-landing">
+    <!-- Hero band: contained ~42vh, not full-screen -->
+    <div class="relative w-full h-[42vh] min-h-[300px] max-h-[460px] flex flex-col items-center justify-center text-center px-gutter overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <div class="w-full h-full bg-cover bg-center opacity-70"
+             role="img"
+             aria-label="A tuxedo cat in a small red beret at a candlelit Parisian cafe table at night, painterly Van Gogh starry-night style."
+             style="background-image:url('../assets/hero.png')"></div>
+        <!-- Dark scrim gradient for text legibility -->
+        <div class="absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background"></div>
+      </div>
+      <div class="relative z-10 fade-float">
+        <h2 class="font-display text-[44px] md:text-[72px] text-starlight-gold leading-none tracking-tight">Madame Minou</h2>
+        <p class="font-body text-secondary italic mt-3 text-lg md:text-xl opacity-90">&ldquo;Are cats even real?&rdquo;</p>
+      </div>
+    </div>
 
-    const resultEl = document.getElementById('result');
-    const apiUrlEl = document.getElementById('apiUrl');
+    <!-- Content: CTA + speech bubble + demo card -->
+    <div class="max-w-reading-width mx-auto px-gutter -mt-6 relative z-20">
+      <!-- Primary CTA -->
+      <div class="flex justify-center mb-10">
+        <button id="cta-consult" class="bg-primary text-on-primary font-bold px-9 py-4 rounded-lg uppercase tracking-widest painterly-border transition-transform hover:scale-105 active:scale-95 shadow-lamplight-lg">
+          Consult Madame Minou
+          <span class="material-symbols-outlined align-middle ml-1">arrow_right_alt</span>
+        </button>
+      </div>
 
-    if (API_BASE) {
-      apiUrlEl.textContent = API_BASE + '/hello';
-    } else {
-      apiUrlEl.textContent = '(set window.__MINOU_API_URL__ or update API_BASE after deploy)';
-    }
+      <!-- Madame Minou welcome speech bubble -->
+      <div class="mb-8 flex justify-start">
+        <div class="bg-midnight-blue border border-starlight-gold/20 p-5 rounded-xl rounded-bl-none shadow-2xl max-w-[90%] fade-float">
+          <p class="text-impasto-white font-body italic">&ldquo;Welcome, traveler. My whiskers sense a question about the unknown. Shall we peek through the veil?&rdquo;</p>
+        </div>
+      </div>
 
-    async function callLambda() {
-      if (!API_BASE) {
-        resultEl.className = 'error';
-        resultEl.textContent = 'API_BASE not set. Deploy first, then update the URL.';
-        return;
-      }
+      <!-- Seeded Penelope demo reading card -->
+      <div class="bg-midnight-blue/80 backdrop-blur-xl border border-starlight-gold/20 rounded-xl p-7 shadow-lamplight relative">
+        <h3 class="font-display text-2xl text-primary mb-1">Penelope&rsquo;s Whisper</h3>
+        <p class="text-on-surface-variant text-xs mb-5 uppercase tracking-widest">Sun in Taurus &bull; Estimated Chart</p>
+        <p class="text-on-surface/90 leading-relaxed border-l-2 border-primary/30 pl-5 italic">
+          &ldquo;Ah, ma petite Penelope! The stars wrapped you in Taurus, the sign of earthly pleasures&mdash;of the warm lap, the perfect sunbeam, the slow blink that says &lsquo;you are mine.&rsquo; Your soul craves stability, mon chou; you are the philosopher of the windowsill, the queen of the measured nap. Today the cosmos whisper: trust the quiet purr over the loud meow.&rdquo;
+        </p>
+        <div class="mt-6 flex items-center justify-between border-t border-primary/10 pt-5">
+          <button aria-label="Hear Madame Minou read this aloud" disabled title="Coming soon" class="flex items-center gap-2 text-primary/40 cursor-not-allowed text-xs uppercase tracking-widest">
+            <span class="material-symbols-outlined text-base">volume_up</span> Hear Madame Minou
+          </button>
+          <button aria-label="Share this reading" class="flex items-center gap-2 text-secondary hover:text-primary transition-colors text-xs uppercase tracking-widest">
+            Share <span class="material-symbols-outlined text-base">ios_share</span>
+          </button>
+        </div>
+      </div>
 
-      resultEl.className = 'loading';
-      resultEl.textContent = 'Consulting the stars...';
+      <!-- About link -->
+      <div class="mt-12 text-center">
+        <a href="#" class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-widest">
+          <span class="w-8 h-px bg-on-surface-variant/30 inline-block"></span> About the Oracle <span class="w-8 h-px bg-on-surface-variant/30 inline-block"></span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-      try {
-        const res = await fetch(API_BASE + '/hello', {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-        });
+  <!-- ═══════════════════════════════════════════════════════════════
+       SCREEN: CONSULTATION INTAKE (hidden by default)
+       [R1.2-R1.7]
+       ═══════════════════════════════════════════════════════════════ -->
+  <section id="screen-intake" class="hidden max-w-reading-width mx-auto px-gutter pt-8">
+    <!-- Step 1: Name -->
+    <div id="intake-step-name">
+      <div class="mb-6 flex justify-start">
+        <div class="bg-midnight-blue border border-starlight-gold/20 p-5 rounded-xl rounded-bl-none shadow-2xl max-w-[90%]">
+          <p class="text-impasto-white font-body italic">&ldquo;And what is this magnificent creature&rsquo;s name?&rdquo;</p>
+        </div>
+      </div>
+      <form id="form-name" class="mt-4">
+        <label for="input-cat-name" class="sr-only">Cat&rsquo;s name</label>
+        <input
+          type="text"
+          id="input-cat-name"
+          name="cat_name"
+          placeholder="e.g. Biscuit, Luna, Sir Fluffington..."
+          required
+          autocomplete="off"
+          class="w-full bg-transparent border-0 border-b-2 border-primary/60 text-on-surface text-lg py-3 px-1 placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-0 focus:shadow-lamplight transition-all"
+        />
+        <div class="flex justify-end mt-6">
+          <button type="submit" class="bg-primary text-on-primary font-bold px-7 py-3 rounded-lg painterly-border transition-transform hover:scale-105 active:scale-95 shadow-lamplight">
+            Next <span class="material-symbols-outlined align-middle ml-1 text-base">arrow_right_alt</span>
+          </button>
+        </div>
+      </form>
+    </div>
 
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    <!-- Step 2: Date -->
+    <div id="intake-step-date" class="hidden">
+      <div class="mb-6 flex justify-start">
+        <div class="bg-midnight-blue border border-starlight-gold/20 p-5 rounded-xl rounded-bl-none shadow-2xl max-w-[90%]">
+          <p id="date-question" class="text-impasto-white font-body italic">&ldquo;Ah, <span id="date-cat-name-display">your cat</span>! And when did the stars welcome them?&rdquo;</p>
+        </div>
+      </div>
+      <form id="form-date" class="mt-4">
+        <label for="input-birth-date" class="block text-on-surface-variant text-sm mb-2">Birth date (or best guess)</label>
+        <input
+          type="date"
+          id="input-birth-date"
+          name="birth_date"
+          class="w-full bg-surface-bright/30 border border-outline/30 text-on-surface text-lg py-3 px-3 rounded-md focus:border-primary focus:ring-0 focus:shadow-lamplight transition-all"
+        />
+        <button type="button" id="btn-mystery" class="mt-3 text-secondary/80 hover:text-secondary text-sm italic underline underline-offset-4 transition-colors">
+          &ldquo;She&rsquo;s a mystery to me too&rdquo;
+        </button>
+        <div class="flex justify-end mt-6">
+          <button type="submit" class="bg-primary text-on-primary font-bold px-7 py-3 rounded-lg painterly-border transition-transform hover:scale-105 active:scale-95 shadow-lamplight">
+            Reveal my reading <span class="material-symbols-outlined align-middle ml-1 text-base">auto_fix_high</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
 
-        const data = await res.json();
-        resultEl.className = '';
-        resultEl.textContent = data.message || JSON.stringify(data);
-      } catch (err) {
-        resultEl.className = 'error';
-        resultEl.textContent = `Error: ${err.message}`;
-      }
-    }
-  </script>
+  <!-- ═══════════════════════════════════════════════════════════════
+       SCREEN: REVEAL / ANTICIPATION (hidden by default)
+       [R5.2-R5.4, R13.2]
+       ═══════════════════════════════════════════════════════════════ -->
+  <section id="screen-reveal" class="hidden max-w-reading-width mx-auto px-gutter pt-8">
+    <div class="flex justify-start mb-6">
+      <div class="bg-midnight-blue border border-starlight-gold/20 p-5 rounded-xl rounded-bl-none shadow-2xl max-w-[90%] anticipation-pulse">
+        <p id="reveal-text" class="text-impasto-white font-body italic">&ldquo;Hmm&hellip; the stars are aligning&hellip; one moment, ch&eacute;rie&hellip;&rdquo;</p>
+      </div>
+    </div>
+    <div class="flex justify-center py-8">
+      <span class="material-symbols-outlined text-primary text-5xl anticipation-pulse" style="font-variation-settings:'FILL' 1;">auto_fix_high</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SCREEN: READING CARD (hidden by default)
+       [R4.1, R4.4]
+       ═══════════════════════════════════════════════════════════════ -->
+  <section id="screen-reading" class="hidden max-w-reading-width mx-auto px-gutter pt-8">
+    <div id="reading-card" class="bg-midnight-blue/80 backdrop-blur-xl border border-starlight-gold/20 rounded-xl p-7 shadow-lamplight relative reveal-card">
+      <h3 id="card-title" class="font-display text-2xl text-primary mb-1"></h3>
+      <p id="card-tier" class="text-on-surface-variant text-xs mb-5 uppercase tracking-widest"></p>
+      <p id="card-reading" class="text-on-surface/90 leading-relaxed border-l-2 border-primary/30 pl-5 italic"></p>
+      <div id="card-facts" class="mt-5 flex flex-wrap gap-3 text-xs text-on-surface-variant"></div>
+      <div class="mt-6 flex items-center justify-between border-t border-primary/10 pt-5">
+        <button aria-label="Hear Madame Minou read this aloud" disabled title="Coming soon" class="flex items-center gap-2 text-primary/40 cursor-not-allowed text-xs uppercase tracking-widest">
+          <span class="material-symbols-outlined text-base">volume_up</span> Hear Madame Minou
+        </button>
+        <div class="flex items-center gap-3">
+          <button id="btn-download" aria-label="Download this reading as image" class="flex items-center gap-1 text-secondary hover:text-primary transition-colors text-xs uppercase tracking-widest">
+            <span class="material-symbols-outlined text-base">download</span>
+          </button>
+          <button id="btn-share" aria-label="Share this reading" class="flex items-center gap-2 text-secondary hover:text-primary transition-colors text-xs uppercase tracking-widest">
+            Share <span class="material-symbols-outlined text-base">ios_share</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         GO DEEPER offer (Task 4.5) [R1.7]
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="go-deeper" class="hidden mt-8">
+      <div class="mb-6 flex justify-start">
+        <div class="bg-midnight-blue border border-starlight-gold/20 p-5 rounded-xl rounded-bl-none shadow-2xl max-w-[90%]">
+          <p id="deeper-prompt" class="text-impasto-white font-body italic">&ldquo;Madame Minou can see more&hellip; would you share your cat&rsquo;s birth time and city?&rdquo;</p>
+        </div>
+      </div>
+      <form id="form-deeper" class="mt-4 space-y-4">
+        <div>
+          <label for="input-birth-time" class="block text-on-surface-variant text-sm mb-2">Birth time (optional)</label>
+          <input
+            type="time"
+            id="input-birth-time"
+            name="birth_time"
+            class="w-full bg-surface-bright/30 border border-outline/30 text-on-surface text-lg py-3 px-3 rounded-md focus:border-primary focus:ring-0 focus:shadow-lamplight transition-all"
+          />
+        </div>
+        <div>
+          <label for="input-birth-city" class="block text-on-surface-variant text-sm mb-2">Birth city (optional)</label>
+          <input
+            type="text"
+            id="input-birth-city"
+            name="birth_city"
+            placeholder="e.g. Paris, London, New York..."
+            autocomplete="off"
+            class="w-full bg-surface-bright/30 border border-outline/30 text-on-surface text-lg py-3 px-3 rounded-md placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-0 focus:shadow-lamplight transition-all"
+          />
+        </div>
+        <div class="flex justify-end">
+          <button type="submit" class="bg-primary text-on-primary font-bold px-7 py-3 rounded-lg painterly-border transition-transform hover:scale-105 active:scale-95 shadow-lamplight">
+            Read deeper <span class="material-symbols-outlined align-middle ml-1 text-base">auto_fix_high</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Bottom Navigation
+     History = greyed/disabled v2 stub [aria-disabled, "soon" badge]
+     ═══════════════════════════════════════════════════════════════ -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-midnight-blue/90 backdrop-blur-lg border-t border-starlight-gold/20 rounded-t-xl" aria-label="Main navigation">
+  <a href="#" id="nav-consult" class="flex flex-col items-center text-primary font-bold">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">auto_fix_high</span>
+    <span class="text-xs">Consult</span>
+  </a>
+  <a href="#" class="flex flex-col items-center text-on-surface-variant/70 hover:text-primary/80 transition-colors">
+    <span class="material-symbols-outlined">menu_book</span>
+    <span class="text-xs">Log</span>
+  </a>
+  <span aria-disabled="true" title="Coming soon" class="flex flex-col items-center text-on-surface-variant/30 cursor-not-allowed relative">
+    <span class="material-symbols-outlined">history_edu</span>
+    <span class="text-xs">History</span>
+    <span class="absolute -top-1 right-0 text-[8px] uppercase tracking-wider text-tertiary/70">soon</span>
+  </span>
+  <a href="#" class="flex flex-col items-center text-on-surface-variant/70 hover:text-primary/80 transition-colors">
+    <span class="material-symbols-outlined">pets</span>
+    <span class="text-xs">About</span>
+  </a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     App Logic
+     ═══════════════════════════════════════════════════════════════ -->
+<script src="app.js"></script>
 </body>
 </html>

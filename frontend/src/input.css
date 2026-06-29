@@ -1,0 +1,70 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base styles ─────────────────────────────────────────────── */
+@layer base {
+  body {
+    font-family: var(--font-body);
+    color: var(--color-on-surface);
+    background-color: #080C1A;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(10,20,47,0.4) 0, transparent 50%),
+      radial-gradient(at 50% 0%, rgba(235,180,43,0.05) 0, transparent 50%);
+    overflow-x: hidden;
+  }
+}
+
+/* ── Impasto texture overlay ─────────────────────────────────── */
+.impasto-texture {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* ── Animations ──────────────────────────────────────────────── */
+@keyframes fadeFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.92; }
+  50% { transform: translateY(-8px); opacity: 1; }
+}
+.fade-float {
+  animation: fadeFloat var(--motion-float-duration) ease-in-out infinite;
+}
+
+@keyframes revealCard {
+  from { opacity: 0; transform: translateY(24px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.reveal-card {
+  animation: revealCard var(--motion-reveal-duration) var(--motion-reveal-easing) forwards;
+}
+
+@keyframes anticipationPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+.anticipation-pulse {
+  animation: anticipationPulse 2s ease-in-out infinite;
+}
+
+/* ── Painterly border (CTA stamp effect) ─────────────────────── */
+.painterly-border {
+  border-bottom: 3px solid var(--color-primary-container);
+}
+
+/* ── Focus styles ────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-float,
+  .reveal-card,
+  .anticipation-pulse {
+    animation: none !important;
+  }
+  .reveal-card { opacity: 1; transform: none; }
+}
