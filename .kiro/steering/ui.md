@@ -30,6 +30,7 @@ Hard rules:
 ## Visual world (locked)
 
 - Café terrace at night, Van Gogh idiom, original art. Palette sampled from the locked hero art, not invented.
+- Hero layout: full-width 16:9 banner (aspect-video, min-h-[420px], max-h-[75vh], bg-cover); bubble + CTA anchored bottom-left, Madame stays clear on the right.
 - Hierarchy: one loud CTA ("Consult Madame Minou"); everything else quiet.
 - Dark palette: maintain contrast (R13.3); respect `prefers-reduced-motion` (R13.2).
 
