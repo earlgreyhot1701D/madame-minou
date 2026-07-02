@@ -24,13 +24,17 @@ Hard rules:
 
 ## Primitives first, then compose
 
-- Build the primitives once: the Card (the single reading card), Button, the consultation input field, persona text styles, the reveal animation. Every screen composes them.
-- One Card. One Button. No screen hand-rolls its own version.
+- Build the primitives once: the Crescent Archive Card, the impasto-gold CTA pill, the ghost secondary button, icon buttons, the consultation input field, persona text styles, the reveal animation. Every screen composes them.
+- One Card ("Crescent Archive"). One CTA pill. One ghost button. No screen hand-rolls its own version.
+- Badge ("soon") for v2 stubs: small chip, gold hairline, uppercase micro-label.
 
 ## Visual world (locked)
 
 - Café terrace at night, Van Gogh idiom, original art. Palette sampled from the locked hero art, not invented.
-- Hierarchy: one loud CTA ("Consult Madame Minou"); everything else quiet.
+- Hero layout: full-width 16:9 banner (aspect-video, min-h-[420px], max-h-[75vh], bg-cover); bubble + CTA anchored bottom-left, Madame stays clear on the right.
+- Hierarchy: ONE loud impasto-gold CTA pill per screen (`--gradient-gold`, lamplight glow, ~0.92 opacity); everything else quiet gold-outline ghosts. The CTA is the only saturated element.
+- Surface: Constellation Wash background (deep-navy gradient + impasto texture + faint inline-SVG constellation at edges + vignette). Never at full strength under text.
+- Card: "Crescent Archive" — semi-transparent midnight-navy, `--card-frame`, crescent-moon motif as low-opacity inline SVG behind reading text. Bottom icon row with gold hairline dividers (Share live; Listen, Save, Copy, Favorite as greyed stubs in v1).
 - Dark palette: maintain contrast (R13.3); respect `prefers-reduced-motion` (R13.2).
 
 ## Intentional choices (do NOT "fix" these)
