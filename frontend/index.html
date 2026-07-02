@@ -7,14 +7,14 @@
 
 <!-- Inlined Tailwind CSS (compiled from dist/output.css for standalone preview) -->
 <style>
-/* ══════════════════════════════════════════════════════════════
-   L'Astre de Minou — Design Tokens
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   L'Astre de Minou â€” Design Tokens
    Source of truth: .kiro/specs/madame-minou/design-system.md
    NEVER hardcode a hex, px, or duration in a component.
-   ══════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 :root {
-  /* ── Color (RGB channel triplets — Tailwind uses these with rgb() and <alpha-value>) ── */
+  /* â”€â”€ Color (RGB channel triplets â€” Tailwind uses these with rgb() and <alpha-value>) â”€â”€ */
   --color-background: 15 19 33;
   --color-midnight-blue: 10 20 47;
   --color-surface: 15 19 33;
@@ -31,10 +31,14 @@
   --color-on-surface-variant: 211 197 174;
   --color-outline: 155 143 122;
   --color-error: 255 180 171;
-  /* ── Shadows ───────────────────────────────────────────────── */
+  /* â”€â”€ Restyle tokens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --gradient-gold: linear-gradient(135deg, #ffd273 0%, #ebb42b 100%);
+  --color-constellation: rgb(253 243 167 / 0.12);
+  --card-frame: 1px solid rgb(253 243 167 / 0.35);
+  /* â”€â”€ Shadows â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   --shadow-lamplight: rgba(235, 180, 43, 0.15);
   --shadow-lamplight-strong: rgba(235, 180, 43, 0.3);
-  /* ── Typography ────────────────────────────────────────────── */
+  /* â”€â”€ Typography â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   --font-display: 'Playfair Display', serif;
   --font-body: 'Manrope', sans-serif;
   --font-size-display-lg: 48px;
@@ -43,19 +47,19 @@
   --font-size-body-lg: 18px;
   --font-size-body-md: 16px;
   --font-size-label-sm: 12px;
-  /* ── Spacing ───────────────────────────────────────────────── */
+  /* â”€â”€ Spacing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   --space-unit: 8px;
   --space-gutter: 16px;
   --space-margin-mobile: 24px;
   --space-margin-desktop: 64px;
   --space-reading-width: 600px;
-  /* ── Radius ────────────────────────────────────────────────── */
+  /* â”€â”€ Radius â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   --radius-sm: 4px;
   --radius-default: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
-  /* ── Motion ────────────────────────────────────────────────── */
+  /* â”€â”€ Motion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   --motion-reveal-duration: 600ms;
   --motion-reveal-easing: cubic-bezier(0.16, 1, 0.3, 1);
   --motion-float-duration: 4s;
@@ -823,8 +827,9 @@ body {
   color: rgb(var(--color-on-surface));
   background-color: #080C1A;
   background-image:
-      radial-gradient(at 0% 0%, rgba(10,20,47,0.4) 0, transparent 50%),
-      radial-gradient(at 50% 0%, rgba(235,180,43,0.05) 0, transparent 50%);
+      radial-gradient(ellipse 120% 80% at 50% 0%, rgba(20,32,64,0.55) 0%, transparent 60%),
+      radial-gradient(circle at 50% 48%, rgba(235,180,43,0.09) 0%, transparent 45%),
+      linear-gradient(180deg, #0A1430 0%, #080C1A 55%, #05080F 100%);
   overflow-x: hidden;
 }
 
@@ -880,6 +885,10 @@ body {
 
 .invisible {
   visibility: hidden;
+}
+
+.collapse {
+  visibility: collapse;
 }
 
 .fixed {
@@ -1007,6 +1016,10 @@ body {
   display: inline-block;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -1017,6 +1030,10 @@ body {
 
 .table {
   display: table;
+}
+
+.contents {
+  display: contents;
 }
 
 .hidden {
@@ -1071,12 +1088,37 @@ body {
   max-width: 24rem;
 }
 
+.flex-shrink {
+  flex-shrink: 1;
+}
+
 .shrink-0 {
   flex-shrink: 0;
 }
 
+.border-collapse {
+  border-collapse: collapse;
+}
+
+.translate-x-1 {
+  --tw-translate-x: 0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .cursor-not-allowed {
   cursor: not-allowed;
+}
+
+.resize {
+  resize: both;
+}
+
+.flex-row {
+  flex-direction: row;
 }
 
 .flex-col {
@@ -1125,6 +1167,10 @@ body {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -1396,6 +1442,14 @@ body {
   padding-left: 1.25rem;
 }
 
+.pl-8 {
+  padding-left: 2rem;
+}
+
+.pt-12 {
+  padding-top: 3rem;
+}
+
 .pt-16 {
   padding-top: 4rem;
 }
@@ -1459,6 +1513,11 @@ body {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .text-xs {
@@ -1604,6 +1663,11 @@ body {
   outline-style: solid;
 }
 
+.blur {
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -1620,6 +1684,10 @@ body {
 
 .backdrop-blur-xl {
   --tw-backdrop-blur: blur(24px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
+.backdrop-filter {
   backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 
@@ -1645,9 +1713,9 @@ body {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── Base styles ─────────────────────────────────────────────── */
+/* â”€â”€ Base styles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
-/* ── Impasto texture overlay ─────────────────────────────────── */
+/* â”€â”€ Impasto texture overlay â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .impasto-texture {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -1655,7 +1723,21 @@ body {
   pointer-events: none;
 }
 
-/* ── Animations ──────────────────────────────────────────────── */
+/* â”€â”€ Constellation Wash: decorative constellation layer â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.constellation-wash {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* â”€â”€ Constellation Wash: vignette (soft radial edge darkening) â”€â”€ */
+
+.constellation-vignette {
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(8, 12, 26, 0.35) 100%);
+  pointer-events: none;
+}
+
+/* â”€â”€ Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 @keyframes fadeFloat {
   0%, 100% {
@@ -1703,13 +1785,13 @@ body {
   animation: anticipationPulse 2s ease-in-out infinite;
 }
 
-/* ── Painterly border (CTA stamp effect) ─────────────────────── */
+/* â”€â”€ Painterly border (CTA stamp effect) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .painterly-border {
   border-bottom: 3px solid rgb(var(--color-primary-container));
 }
 
-/* ── Focus styles ────────────────────────────────────────────── */
+/* â”€â”€ Focus styles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 :focus-visible {
   outline: 2px solid rgb(var(--color-primary));
@@ -1841,12 +1923,12 @@ body {
     flex-direction: row;
   }
 
-  .md\:justify-start {
-    justify-content: flex-start;
-  }
-
   .md\:gap-6 {
     gap: 1.5rem;
+  }
+
+  .md\:pb-16 {
+    padding-bottom: 4rem;
   }
 
   .md\:pb-6 {
@@ -1886,6 +1968,94 @@ body {
 <body class="font-body text-on-surface min-h-screen selection:bg-primary selection:text-on-primary">
 <!-- Impasto texture overlay -->
 <div class="fixed inset-0 impasto-texture z-0"></div>
+
+<!-- Constellation Wash: inline SVG linework (cat constellation, zodiac glyphs, scattered stars) -->
+<div class="fixed inset-0 z-0 constellation-wash" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" class="w-full h-full" fill="none">
+    <!-- Cat constellation (upper-left area, biased to edge) -->
+    <g stroke="rgb(253 243 167 / 0.5)" stroke-width="0.8" stroke-linecap="round">
+      <!-- Cat body outline -->
+      <line x1="80" y1="120" x2="130" y2="150"/>
+      <line x1="130" y1="150" x2="170" y2="180"/>
+      <line x1="170" y1="180" x2="200" y2="170"/>
+      <line x1="200" y1="170" x2="220" y2="140"/>
+      <!-- Cat ears -->
+      <line x1="80" y1="120" x2="70" y2="90"/>
+      <line x1="70" y1="90" x2="95" y2="105"/>
+      <line x1="95" y1="105" x2="110" y2="85"/>
+      <line x1="110" y1="85" x2="130" y2="110"/>
+      <!-- Cat tail -->
+      <line x1="220" y1="140" x2="250" y2="120"/>
+      <line x1="250" y1="120" x2="270" y2="130"/>
+    </g>
+    <!-- Constellation nodes (stars at vertices) -->
+    <g fill="rgb(253 243 167 / 0.7)">
+      <circle cx="80" cy="120" r="2"/>
+      <circle cx="130" cy="150" r="1.5"/>
+      <circle cx="170" cy="180" r="1.5"/>
+      <circle cx="200" cy="170" r="1.5"/>
+      <circle cx="220" cy="140" r="2"/>
+      <circle cx="70" cy="90" r="2.5"/>
+      <circle cx="110" cy="85" r="2"/>
+      <circle cx="250" cy="120" r="1.5"/>
+      <circle cx="270" cy="130" r="2"/>
+    </g>
+
+    <!-- Zodiac glyphs (small, scattered at corners/edges) -->
+    <g fill="rgb(253 243 167 / 0.4)" font-family="serif" font-size="18">
+      <!-- Aries (top-right corner) -->
+      <text x="1320" y="80">&#x2648;</text>
+      <!-- Leo (bottom-left) -->
+      <text x="60" y="780">&#x264C;</text>
+      <!-- Pisces (bottom-right) -->
+      <text x="1350" y="820">&#x2653;</text>
+      <!-- Cancer (top middle-right, away from center) -->
+      <text x="1100" y="130">&#x264B;</text>
+      <!-- Scorpio (left edge, middle-low) -->
+      <text x="40" y="500">&#x264F;</text>
+    </g>
+
+    <!-- Scattered small stars (biased to edges, sparse in center) -->
+    <g fill="rgb(253 243 167 / 0.6)">
+      <!-- Top edge -->
+      <circle cx="400" cy="30" r="1"/>
+      <circle cx="700" cy="50" r="0.8"/>
+      <circle cx="1050" cy="25" r="1.2"/>
+      <circle cx="1250" cy="60" r="0.9"/>
+      <!-- Right edge -->
+      <circle cx="1380" cy="200" r="1"/>
+      <circle cx="1400" cy="400" r="0.8"/>
+      <circle cx="1350" cy="600" r="1.1"/>
+      <!-- Bottom edge -->
+      <circle cx="300" cy="860" r="1"/>
+      <circle cx="600" cy="880" r="0.8"/>
+      <circle cx="900" cy="850" r="1"/>
+      <circle cx="1150" cy="870" r="0.9"/>
+      <!-- Left edge -->
+      <circle cx="30" cy="300" r="1"/>
+      <circle cx="50" cy="650" r="0.9"/>
+      <!-- A few sparse inner ones (not center) -->
+      <circle cx="350" cy="200" r="0.7"/>
+      <circle cx="1100" cy="700" r="0.7"/>
+      <circle cx="200" cy="400" r="0.6"/>
+      <circle cx="1250" cy="350" r="0.7"/>
+    </g>
+
+    <!-- Wish star: brighter accent, upper area -->
+    <g fill="rgb(253 243 167 / 0.9)">
+      <circle cx="1180" cy="70" r="2.5"/>
+    </g>
+    <g stroke="rgb(253 243 167 / 0.5)" stroke-width="0.6">
+      <line x1="1180" y1="62" x2="1180" y2="78"/>
+      <line x1="1172" y1="70" x2="1188" y2="70"/>
+      <line x1="1174" y1="64" x2="1186" y2="76"/>
+      <line x1="1186" y1="64" x2="1174" y2="76"/>
+    </g>
+  </svg>
+</div>
+
+<!-- Constellation Wash: vignette layer -->
+<div class="fixed inset-0 z-0 constellation-vignette" aria-hidden="true"></div>
 
 <!-- Top Header Bar -->
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-surface/80 backdrop-blur-md border-b border-primary/20">
@@ -2112,8 +2282,8 @@ body {
 <!-- Inlined App Logic (from app.js for standalone preview) -->
 <script>
 /**
- * Madame Minou — Café-Terrace App Logic
- * State machine: LANDING → INTAKE_NAME → INTAKE_DATE → REVEALING → READING → GO_DEEPER → REVEALING → READING
+ * Madame Minou â€” CafÃ©-Terrace App Logic
+ * State machine: LANDING â†’ INTAKE_NAME â†’ INTAKE_DATE â†’ REVEALING â†’ READING â†’ GO_DEEPER â†’ REVEALING â†’ READING
  *
  * Keys stay server-side. NEVER call the model from the browser.
  * Reading text set via textContent, NEVER innerHTML.
@@ -2122,7 +2292,7 @@ body {
 (function () {
   'use strict';
 
-  // ─── State ─────────────────────────────────────────────────────────────────
+  // â”€â”€â”€ State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const state = {
     catName: '',
     birthDate: '',
@@ -2133,11 +2303,11 @@ body {
     hasFirstReading: false,
   };
 
-  // ─── API Config ────────────────────────────────────────────────────────────
+  // â”€â”€â”€ API Config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const API_URL = window.__MINOU_API_URL__ || '';
   const MOCK_MODE = !API_URL;
 
-  // ─── DOM References ────────────────────────────────────────────────────────
+  // â”€â”€â”€ DOM References â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const screens = {
     landing: document.getElementById('screen-landing'),
     intake: document.getElementById('screen-intake'),
@@ -2170,14 +2340,14 @@ body {
     btnDownload: document.getElementById('btn-download'),
   };
 
-  // ─── Screen Management ─────────────────────────────────────────────────────
+  // â”€â”€â”€ Screen Management â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function showScreen(name) {
     Object.values(screens).forEach(s => s.classList.add('hidden'));
     screens[name].classList.remove('hidden');
     state.currentScreen = name;
   }
 
-  // ─── API Call ──────────────────────────────────────────────────────────────
+  // â”€â”€â”€ API Call â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   async function fetchReading(facts) {
     if (MOCK_MODE) {
       return getMockReading(facts);
@@ -2193,7 +2363,7 @@ body {
     return res.json();
   }
 
-  // ─── Mock Response (local dev without server) ──────────────────────────────
+  // â”€â”€â”€ Mock Response (local dev without server) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function getMockReading(facts) {
     const tier = facts.chart_tier || 'date_only';
     const name = facts.cat_name || 'your magnificent feline';
@@ -2240,7 +2410,7 @@ body {
     });
   }
 
-  // ─── Build Facts Object ────────────────────────────────────────────────────
+  // â”€â”€â”€ Build Facts Object â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function buildFacts() {
     var facts = {
       cat_name: state.catName,
@@ -2277,7 +2447,7 @@ body {
     return facts;
   }
 
-  // ─── Mock Astrology Helpers ────────────────────────────────────────────────
+  // â”€â”€â”€ Mock Astrology Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function getSunSignFromDate(dateStr) {
     var parts = dateStr.split('-');
     var month = parseInt(parts[1], 10);
@@ -2312,12 +2482,12 @@ body {
     return risings[Math.floor(Math.random() * 12)];
   }
 
-  // ─── Render Reading Card ───────────────────────────────────────────────────
+  // â”€â”€â”€ Render Reading Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function renderCard(data) {
     var facts = data.facts || {};
     var readingText = data.reading_text || '';
 
-    // Title — use textContent (NEVER innerHTML)
+    // Title â€” use textContent (NEVER innerHTML)
     els.cardTitle.textContent = facts.cat_name ? facts.cat_name + '\u2019s Reading' : 'Your Reading';
 
     // Tier badge
@@ -2337,7 +2507,7 @@ body {
     }
     els.cardTier.textContent = tierText;
 
-    // Reading text — textContent, NEVER innerHTML
+    // Reading text â€” textContent, NEVER innerHTML
     els.cardReading.textContent = readingText;
 
     // Facts summary pills
@@ -2362,7 +2532,7 @@ body {
     els.deeperPrompt.textContent = deeperText;
   }
 
-  // ─── Show Error State (in-voice) ──────────────────────────────────────────
+  // â”€â”€â”€ Show Error State (in-voice) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function showError() {
     els.cardTitle.textContent = 'Oh non\u2026';
     els.cardTier.textContent = '';
@@ -2373,7 +2543,7 @@ body {
     showScreen('reading');
   }
 
-  // ─── Reveal Sequence ──────────────────────────────────────────────────────
+  // â”€â”€â”€ Reveal Sequence â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   async function doReveal(facts) {
     // Update anticipation text with cat name
     els.revealText.textContent = '\u201CHmm\u2026 the stars are aligning for ' +
@@ -2415,7 +2585,7 @@ body {
     }
   }
 
-  // ─── Event Handlers ────────────────────────────────────────────────────────
+  // â”€â”€â”€ Event Handlers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   // CTA: Start consultation
   els.ctaConsult.addEventListener('click', function () {
@@ -2488,9 +2658,9 @@ body {
     }
   });
 
-  // Download button (stub — full image rendering is Task 5.1)
+  // Download button (stub â€” full image rendering is Task 5.1)
   els.btnDownload.addEventListener('click', function () {
-    // TODO: Task 5.1 — implement html-to-image card rendering
+    // TODO: Task 5.1 â€” implement html-to-image card rendering
     var text = els.cardTitle.textContent + '\n\n' + els.cardReading.textContent;
     var blob = new Blob([text], { type: 'text/plain' });
     var url = URL.createObjectURL(blob);

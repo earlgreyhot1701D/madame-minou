@@ -23,6 +23,11 @@
   --color-outline: 155 143 122;
   --color-error: 255 180 171;
 
+  /* ── Restyle tokens ─────────────────────────────────────────── */
+  --gradient-gold: linear-gradient(135deg, #ffd273 0%, #ebb42b 100%);
+  --color-constellation: rgb(253 243 167 / 0.12);
+  --card-frame: 1px solid rgb(253 243 167 / 0.35);
+
   /* ── Shadows ───────────────────────────────────────────────── */
   --shadow-lamplight: rgba(235, 180, 43, 0.15);
   --shadow-lamplight-strong: rgba(235, 180, 43, 0.3);
