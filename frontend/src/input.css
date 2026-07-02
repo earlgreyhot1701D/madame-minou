@@ -113,6 +113,75 @@
   text-shadow: 0 0 8px rgba(235, 180, 43, 0.3);
 }
 
+/* ── Reading card: Crescent Archive ──────────────────────────── */
+.card-reading {
+  position: relative;
+  background-color: rgb(var(--color-midnight-blue) / 0.8);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: var(--card-frame);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  box-shadow: 0 0 48px rgba(235, 180, 43, 0.12), 0 0 96px rgba(235, 180, 43, 0.06);
+  overflow: hidden;
+}
+
+/* Corner accents (small gold painterly marks) */
+.card-reading::before,
+.card-reading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: rgb(var(--color-starlight-gold) / 0.35);
+  border-style: solid;
+  pointer-events: none;
+}
+.card-reading::before {
+  top: 8px;
+  left: 8px;
+  border-width: 2px 0 0 2px;
+  border-radius: 3px 0 0 0;
+}
+.card-reading::after {
+  bottom: 8px;
+  right: 8px;
+  border-width: 0 2px 2px 0;
+  border-radius: 0 0 3px 0;
+}
+
+/* Icon row with gold hairline dividers */
+.card-reading .card-icon-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgb(var(--color-primary) / 0.1);
+  padding-top: 1.25rem;
+  margin-top: 1.5rem;
+}
+.card-icon-row .icon-divider {
+  width: 1px;
+  height: 16px;
+  background: rgb(var(--color-starlight-gold) / 0.25);
+}
+
+/* Quote accent: warm gold left border */
+.card-reading .card-quote {
+  border-left: 2px solid rgb(var(--color-starlight-gold) / 0.4);
+  padding-left: 1.25rem;
+}
+
+/* Crescent moon motif (positioned via the .card-moon-motif class) */
+.card-moon-motif {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 60px;
+  height: 60px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
 /* ── Focus styles ────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid rgb(var(--color-primary));

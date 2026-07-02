@@ -153,16 +153,22 @@
     <section class="max-w-reading-width mx-auto px-gutter mt-8 relative z-20">
 
       <!-- Seeded Penelope demo reading card -->
-      <div class="bg-midnight-blue/80 backdrop-blur-xl border border-starlight-gold/20 rounded-xl p-7 shadow-lamplight relative">
-        <h3 class="font-display text-2xl text-primary mb-1">Penelope&rsquo;s Whisper</h3>
-        <p class="text-on-surface-variant text-xs mb-5 uppercase tracking-widest">Sun in Taurus &bull; Estimated Chart</p>
-        <p class="text-on-surface/90 leading-relaxed border-l-2 border-primary/30 pl-5 italic">
+      <div class="card-reading relative">
+        <!-- Crescent moon motif -->
+        <svg class="card-moon-motif" aria-hidden="true" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M45 30c0 12-9.5 20-22 20C15.5 50 10 45 10 30c0-15 5.5-20 13-20C35.5 10 45 18 45 30z" fill="rgb(253 243 167 / 0.5)"/>
+          <circle cx="30" cy="30" r="18" fill="rgb(10 20 47)"/>
+        </svg>
+        <h3 class="font-display text-2xl text-primary mb-1 relative z-10">Penelope&rsquo;s Whisper</h3>
+        <p class="text-on-surface-variant text-xs mb-5 uppercase tracking-widest relative z-10">Sun in Taurus &bull; Estimated Chart</p>
+        <p class="card-quote text-on-surface/90 leading-relaxed italic relative z-10">
           &ldquo;Ah, ma petite Penelope! The stars wrapped you in Taurus, the sign of earthly pleasures&mdash;of the warm lap, the perfect sunbeam, the slow blink that says &lsquo;you are mine.&rsquo; Your soul craves stability, mon chou; you are the philosopher of the windowsill, the queen of the measured nap. Today the cosmos whisper: trust the quiet purr over the loud meow.&rdquo;
         </p>
-        <div class="mt-6 flex items-center justify-between border-t border-primary/10 pt-5">
+        <div class="card-icon-row relative z-10">
           <button aria-label="Hear Madame Minou read this aloud" disabled title="Coming soon" class="flex items-center gap-2 text-primary/40 cursor-not-allowed text-xs uppercase tracking-widest">
             <span class="material-symbols-outlined text-base">volume_up</span> Hear Madame Minou
           </button>
+          <span class="icon-divider"></span>
           <button aria-label="Share this reading" class="btn-ghost flex items-center gap-2 text-xs uppercase tracking-widest">
             Share <span class="material-symbols-outlined text-base">ios_share</span>
           </button>
@@ -247,15 +253,21 @@
 
   <!-- SCREEN: READING CARD (hidden by default) -->
   <section id="screen-reading" class="hidden max-w-reading-width mx-auto px-gutter pt-8">
-    <div id="reading-card" class="bg-midnight-blue/80 backdrop-blur-xl border border-starlight-gold/20 rounded-xl p-7 shadow-lamplight relative reveal-card">
-      <h3 id="card-title" class="font-display text-2xl text-primary mb-1"></h3>
-      <p id="card-tier" class="text-on-surface-variant text-xs mb-5 uppercase tracking-widest"></p>
-      <p id="card-reading" class="text-on-surface/90 leading-relaxed border-l-2 border-primary/30 pl-5 italic"></p>
-      <div id="card-facts" class="mt-5 flex flex-wrap gap-3 text-xs text-on-surface-variant"></div>
-      <div class="mt-6 flex items-center justify-between border-t border-primary/10 pt-5">
+    <div id="reading-card" class="card-reading relative reveal-card">
+      <!-- Crescent moon motif -->
+      <svg class="card-moon-motif" aria-hidden="true" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M45 30c0 12-9.5 20-22 20C15.5 50 10 45 10 30c0-15 5.5-20 13-20C35.5 10 45 18 45 30z" fill="rgb(253 243 167 / 0.5)"/>
+        <circle cx="30" cy="30" r="18" fill="rgb(10 20 47)"/>
+      </svg>
+      <h3 id="card-title" class="font-display text-2xl text-primary mb-1 relative z-10"></h3>
+      <p id="card-tier" class="text-on-surface-variant text-xs mb-5 uppercase tracking-widest relative z-10"></p>
+      <p id="card-reading" class="card-quote text-on-surface/90 leading-relaxed italic relative z-10"></p>
+      <div id="card-facts" class="mt-5 flex flex-wrap gap-3 text-xs text-on-surface-variant relative z-10"></div>
+      <div class="card-icon-row relative z-10">
         <button aria-label="Hear Madame Minou read this aloud" disabled title="Coming soon" class="flex items-center gap-2 text-primary/40 cursor-not-allowed text-xs uppercase tracking-widest">
           <span class="material-symbols-outlined text-base">volume_up</span> Hear Madame Minou
         </button>
+        <span class="icon-divider"></span>
         <div class="flex items-center gap-3">
           <button id="btn-download" aria-label="Download this reading as image" class="btn-ghost flex items-center gap-1 text-xs uppercase tracking-widest">
             <span class="material-symbols-outlined text-base">download</span>
