@@ -67,6 +67,52 @@
   border-bottom: 3px solid rgb(var(--color-primary-container));
 }
 
+/* ── Primary button (impasto molten-gold pill) ───────────────── */
+.btn-primary {
+  background: var(--gradient-gold);
+  color: #402d00;
+  font-weight: 700;
+  border-bottom: 3px solid rgb(var(--color-primary-container));
+  box-shadow: 0 0 24px rgba(235, 180, 43, 0.35);
+  opacity: 0.92;
+  transition: opacity var(--motion-hover-duration) ease,
+              box-shadow var(--motion-hover-duration) ease,
+              transform var(--motion-hover-duration) ease;
+}
+.btn-primary:hover {
+  opacity: 1;
+  box-shadow: 0 0 32px rgba(235, 180, 43, 0.5);
+  transform: scale(1.03);
+}
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+/* ── Badge ("soon" chip) ─────────────────────────────────────── */
+.badge-soon {
+  display: inline-block;
+  border: 1px solid rgb(var(--color-starlight-gold) / 0.4);
+  border-radius: 9999px;
+  padding: 1px 6px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgb(var(--color-starlight-gold) / 0.7);
+  line-height: 1.4;
+}
+
+/* ── Ghost button hover consistency ──────────────────────────── */
+.btn-ghost {
+  color: rgb(var(--color-secondary));
+  transition: color var(--motion-hover-duration) ease,
+              text-shadow var(--motion-hover-duration) ease;
+}
+.btn-ghost:hover {
+  color: rgb(var(--color-primary));
+  text-shadow: 0 0 8px rgba(235, 180, 43, 0.3);
+}
+
 /* ── Focus styles ────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid rgb(var(--color-primary));
@@ -80,4 +126,5 @@
     animation: none !important;
   }
   .reveal-card { opacity: 1; transform: none; }
+  .btn-primary:hover { transform: none; }
 }
